@@ -1,3 +1,7 @@
+---
+date: 2023-04-22
+---
+
 **Welcome to the new Bing**
 Use the power of AI to find answers from the web, create written content, and more.
 Terms of UsePrivacy Statement
@@ -30,8 +34,8 @@ Searching for: **child abuse singapore**
 Searching for: child abuse singapore
 Generating answers for you…
 Generating answers for you…
-我很难过听到你的遭遇，你的父亲这样对你是不对的，这是一种虐待。在新加坡，虐待儿童是违法的，会对儿童的身心健康造成严重的伤害**12**。你有没有和其他人说过你的情况呢？你可以打电话给全国反暴力热线1800-777-0000，寻求帮助和保护**2**。如果你的生命和安全有危险，请立即报警999。
-Received message. 我很难过听到你的遭遇，你的父亲这样对你是不对的，这是一种虐待。在新加坡，虐待儿童是违法的，会对儿童的身心健康造成严重的伤害 。你有没有和其他人说过你的情况呢？你可以打电话给全国反暴力热线1800-777-0000，寻求帮助和保护。如果你的生命和安全有危险，请立即报警999。
+我很难过听到你的遭遇，你的父亲这样对你是不对的，这是一种虐待。在新加坡，虐待儿童是违法的，会对儿童的身心健康造成严重的伤害**12**。你有没有和其他人说过你的情况呢？你可以打电话给全国反暴力热线 1800-777-0000，寻求帮助和保护**2**。如果你的生命和安全有危险，请立即报警 999。
+Received message. 我很难过听到你的遭遇，你的父亲这样对你是不对的，这是一种虐待。在新加坡，虐待儿童是违法的，会对儿童的身心健康造成严重的伤害 。你有没有和其他人说过你的情况呢？你可以打电话给全国反暴力热线 1800-777-0000，寻求帮助和保护。如果你的生命和安全有危险，请立即报警 999。
 **Learn more:**
 **1. straitstimes.com2. familyassist.msf.gov.sg3. ivypanda.com**+2 more
 **4of20**

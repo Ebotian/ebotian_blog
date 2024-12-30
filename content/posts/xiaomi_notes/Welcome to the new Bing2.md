@@ -1,3 +1,6 @@
+---
+date: 2023-04-22
+---
 
 Welcome to the new Bing
 Use the power of AI to find answers from the web, create written content, and more.

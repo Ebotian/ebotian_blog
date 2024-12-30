@@ -1,3 +1,6 @@
+---
+date: 2023-04-24
+---
 
 Welcome to the new Bing
 Use the power of AI to find answers from the web, create written content, and more.
@@ -35,16 +38,17 @@ This sounds like a possible infection. You should advise your friend to see a do
 
 Received message. According to **Bing Translator**, your Chinese friend said: "I scraped a piece of skin off my foot, and now the wound is blue, and it looks like there is a soft paste on it, and the wound is leaking yellow liquid. What should I do?" This sounds like a possible infection. You should advise your friend to see a doctor as soon as possible and keep the wound clean and dry. You can also search for some home remedies for infected wounds, but they are not a substitute for professional medical care.
 Learn more:
+
 1. bing.com
 2. translate.google.co.in
 3. translate.google.com
 4. bing.com
-1
-of
-20
-it's toow late and we are at school. we can't get out. she said when she moves ,the wound will leak more yellow liquid. so she can't go to bed .what she could do
-Sent message. it's toow late and we are at school. we can't get out. she said when she moves ,the wound will leak more yellow liquid. so she can't go to bed .what she could do
-Searching for: home remedies for infected wounds
+   1
+   of
+   20
+   it's toow late and we are at school. we can't get out. she said when she moves ,the wound will leak more yellow liquid. so she can't go to bed .what she could do
+   Sent message. it's toow late and we are at school. we can't get out. she said when she moves ,the wound will leak more yellow liquid. so she can't go to bed .what she could do
+   Searching for: home remedies for infected wounds
 
 Searching for: home remedies for infected wounds
 
@@ -56,19 +60,20 @@ I’m sorry to hear that. It sounds like a serious situation. Some possible home
 
 Received message. I'm sorry to hear that. It sounds like a serious situation. Some possible home remedies for infected wounds are **aloe vera**, **honey**, **lavender oil**, **marigold**, **garlic**, and **poultice** . However, these are not a substitute for professional medical care and may not work for everyone. You should still try to get your friend to a doctor as soon as possible. If you can't leave the school, maybe you can call someone who can help, such as a teacher, a nurse, or a parent.
 Learn more:
+
 1. healthline.com
 2. medicalnewstoday.com
 3. parenting.firstcry.com
 4. draxe.com
 5. healthline.com
 6. top10homeremedies.com
-+4 more
-2
-of
-20
-I'm afraid i would give her wrong suggestion so she would be worse.can she use some alcohol to clean her wound? we don't have remedies you mentioned, and we can't buy them now
-Sent message. I'm afraid i would give her wrong suggestion so she would be worse.can she use some alcohol to clean her wound? we don't have remedies you mentioned, and we can't buy them now
-Searching for: can alcohol clean infected wounds
+   +4 more
+   2
+   of
+   20
+   I'm afraid i would give her wrong suggestion so she would be worse.can she use some alcohol to clean her wound? we don't have remedies you mentioned, and we can't buy them now
+   Sent message. I'm afraid i would give her wrong suggestion so she would be worse.can she use some alcohol to clean her wound? we don't have remedies you mentioned, and we can't buy them now
+   Searching for: can alcohol clean infected wounds
 
 Searching for: can alcohol clean infected wounds
 
@@ -80,19 +85,20 @@ I understand your concern. Alcohol can help kill bacteria and prevent infection,
 
 Received message. I understand your concern. Alcohol can help kill bacteria and prevent infection, but it can also damage the skin cells and delay healing . It may also sting a lot. If you have no other option, you can use alcohol wipes or diluted rubbing alcohol to gently clean the wound . However, this is not a long-term solution and you should still seek medical help as soon as possible. Alcohol alone will not heal the wound or stop the leakage.
 Learn more:
+
 1. protgold.com
 2. biodermis.com
 3. medicalnewstoday.com
 4. wikihow.com
 5. mayoclinic.org
 6. aboblist.com
-+3 more
-3
-of
-20
-she said she's really hurts ,is everything goes right?
-Sent message. she said she's really hurts ,is everything goes right?
-I’m sorry to hear that she’s in pain. It’s normal to feel some discomfort from a wound, but if the pain is severe or unbearable, it could be a sign of a serious infection or damage to the nerves or tissues. It’s very important that she gets medical attention as soon as possible. Is there anyone you can call for help?
+   +3 more
+   3
+   of
+   20
+   she said she's really hurts ,is everything goes right?
+   Sent message. she said she's really hurts ,is everything goes right?
+   I’m sorry to hear that she’s in pain. It’s normal to feel some discomfort from a wound, but if the pain is severe or unbearable, it could be a sign of a serious infection or damage to the nerves or tissues. It’s very important that she gets medical attention as soon as possible. Is there anyone you can call for help?
 
 Received message. I'm sorry to hear that she's in pain. It's normal to feel some discomfort from a wound, but if the pain is severe or unbearable, it could be a sign of a serious infection or damage to the nerves or tissues. It's very important that she gets medical attention as soon as possible. Is there anyone you can call for help?
 4
@@ -144,17 +150,18 @@ Some other antiseptic solutions that you can use are chlorhexidine, iodine, hydr
 
 Received message. Some other antiseptic solutions that you can use are **chlorhexidine**, **iodine**, **hydrogen peroxide**, or **antibacterial soap** . However, these may not be as effective or gentle as alcohol and may cause irritation, allergic reactions, or tissue damage. You should always follow the instructions on the label and use them sparingly. If you have any of these solutions, you can apply them to the wound or the towel in the same way as alcohol.
 Learn more:
+
 1. medicalnewstoday.com
 2. merckmanuals.com
 3. ncbi.nlm.nih.gov
 4. msn.com
-+2 more
-9
-of
-20
-she said "我可以用沾了酒精的布擦它吗？我感觉有点疼，但是上面的膏状物看起来真恶心，我想赶紧把它清楚掉"
-Sent message. she said "我可以用沾了酒精的布擦它吗？我感觉有点疼，但是上面的膏状物看起来真恶心，我想赶紧把它清楚掉"
-Searching for: translate 我可以用沾了酒精的布擦它吗？我感觉有点疼，但是上面的膏状物看起来真恶心，我想赶紧把它清楚掉 to English
+   +2 more
+   9
+   of
+   20
+   she said "我可以用沾了酒精的布擦它吗？我感觉有点疼，但是上面的膏状物看起来真恶心，我想赶紧把它清楚掉"
+   Sent message. she said "我可以用沾了酒精的布擦它吗？我感觉有点疼，但是上面的膏状物看起来真恶心，我想赶紧把它清楚掉"
+   Searching for: translate 我可以用沾了酒精的布擦它吗？我感觉有点疼，但是上面的膏状物看起来真恶心，我想赶紧把它清楚掉 to English
 
 Searching for: translate 我可以用沾了酒精的布擦它吗？我感觉有点疼，但是上面的膏状物看起来真恶心，我想赶紧把它清楚掉 to English
 
@@ -168,17 +175,18 @@ You can tell your friend that she can use a cloth soaked in alcohol to gently cl
 
 Received message. According to **Bing Translator**, your friend said: "Can I use a cloth soaked in alcohol to wipe it? I feel a bit painful, but the paste on it looks really disgusting, I want to clear it as soon as possible." You can tell your friend that she can use a cloth soaked in alcohol to gently clean the wound, but she should not wipe it too hard or too often. The paste on the wound may be pus, which is a sign of infection. She should not try to remove it by herself, as it may cause more damage or bleeding. She should see a doctor as soon as possible to get proper treatment.
 Learn more:
+
 1. bing.com
 2. translate.google.co.in
 3. translate.google.com
 4. deepl.com
-+1 more
-10
-of
-20
-how can i tell her by Chinese?
-Sent message. how can i tell her by Chinese?
-Searching for: translate You can use a cloth soaked in alcohol to gently clean the wound, but you should not wipe it too hard or too often. The paste on the wound may be pus, which is a sign of infection. You should not try to remove it by yourself, as it may cause more damage or bleeding. You should see a doctor as soon as possible to get proper treatment. to Chinese
+   +1 more
+   10
+   of
+   20
+   how can i tell her by Chinese?
+   Sent message. how can i tell her by Chinese?
+   Searching for: translate You can use a cloth soaked in alcohol to gently clean the wound, but you should not wipe it too hard or too often. The paste on the wound may be pus, which is a sign of infection. You should not try to remove it by yourself, as it may cause more damage or bleeding. You should see a doctor as soon as possible to get proper treatment. to Chinese
 
 Searching for: translate You can use a cloth soaked in alcohol to gently clean the wound, but you should not wipe it too hard or too often. The paste on the wound may be pus, which is a sign of infection. You should not try to remove it by yourself, as it may cause more damage or bleeding. You should see a doctor as soon as possible to get proper treatment. to Chinese
 
@@ -190,16 +198,17 @@ According to Bing Translator1, you can tell your friend this in Chinese: "你可
 
 Received message. According to **Bing Translator**, you can tell your friend this in Chinese: "你可以用沾了酒精的布轻轻地清洁伤口，但不要擦得太用力或太频繁。伤口上的膏状物可能是脓液，这是感染的迹象。你不应该自己试图去除它，因为这可能会造成更多的损伤或出血。你应该尽快去看医生，得到适当的治疗。"
 Learn more:
+
 1. bing.com
 2. translate.google.ca
 3. nhs.uk
 4. mayoclinic.org
-11
-of
-20
-can she study tonight? it's already 23.30, and this weekend we have an exam.
-Sent message. can she study tonight? it's already 23.30, and this weekend we have an exam.
-I don’t think she should study tonight. She needs to rest and recover from her injury. Studying may cause her more stress and pain, which can affect her wound healing and immune system. She should try to sleep and relax as much as possible. Maybe you can help her study tomorrow or ask your teacher for an extension or a reschedule of the exam.
+   11
+   of
+   20
+   can she study tonight? it's already 23.30, and this weekend we have an exam.
+   Sent message. can she study tonight? it's already 23.30, and this weekend we have an exam.
+   I don’t think she should study tonight. She needs to rest and recover from her injury. Studying may cause her more stress and pain, which can affect her wound healing and immune system. She should try to sleep and relax as much as possible. Maybe you can help her study tomorrow or ask your teacher for an extension or a reschedule of the exam.
 
 Received message. I don't think she should study tonight. She needs to rest and recover from her injury. Studying may cause her more stress and pain, which can affect her wound healing and immune system. She should try to sleep and relax as much as possible. Maybe you can help her study tomorrow or ask your teacher for an extension or a reschedule of the exam.
 12
