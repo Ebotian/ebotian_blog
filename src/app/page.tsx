@@ -13,12 +13,9 @@ export default function Home() {
           backgroundImage: 'url("/background.png")',
           backgroundSize: 'contain',
           backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat'
+          backgroundRepeat: 'no-repeat',
+          border: '10px solid white'
         }}>
-        <p className="text-2xl mt-4"
-          style={{ color: '#5062FF', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
-          总字数：{totalWordCount} 字
-        </p>
         <a href="https://www.pixiv.net/"
           target="_blank"
           rel="noopener noreferrer"

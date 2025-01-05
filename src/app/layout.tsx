@@ -6,7 +6,8 @@ import { FaGithub, FaTwitter } from 'react-icons/fa'
 import Search from '../components/Search'
 import dynamic from 'next/dynamic'
 import MusicPlayer from '../components/MusicPlayer'
-import CustomCursor from '../components/CustomCursor'  // 添加这一行
+import CustomCursor from '../components/CustomCursor'
+import { getPostsByMonth } from '../lib/posts'
 
 const GoogleAnalytics = dynamic(() => import('../components/GoogleAnalytics'), { ssr: false })
 
@@ -22,10 +23,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const postsByMonth = getPostsByMonth()
+  const totalWordCount = Object.values(postsByMonth).flat().reduce((total, post) => total + (post.wordCount || 0), 0)
+
   return (
     <html lang="zh" className="h-full">
       <body className={`${inter.className} flex flex-col min-h-full bg-background text-gray-800`}>
-        <CustomCursor />  {/* 添加这一行 */}
+        <CustomCursor />
         <nav className="bg-primary text-white p-4">
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <Link href="/" className="text-2xl font-bold hover:text-secondary mb-4 md:mb-0">Ebotian 的博客</Link>
@@ -49,6 +53,7 @@ export default function RootLayout({
           <div className="container mx-auto text-center">
             <MusicPlayer songId="2131307501" autoPlay={true} />
             © 2024 Ebotian 的博客. All rights reserved.
+            <p className="text-sm mt-2">总字数：{totalWordCount} 字</p>
           </div>
         </footer>
         <GoogleAnalytics GA_MEASUREMENT_ID="G-NDXHPC8TS9" />
