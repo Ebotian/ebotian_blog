@@ -24,7 +24,7 @@ export default function Home() {
         </a>
       </div>
       <div className="py-16 container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-8 text-primary">我的文章</h2>
+        <h2 className="text-4xl font-bold mb-8 text-primary">文章</h2>
         {Object.entries(postsByMonth).map(([monthKey, posts]) => (
           <div key={monthKey} className="mb-8">
             <h3 className="text-2xl font-semibold mb-4 text-secondary">{formatMonthKey(monthKey)}</h3>
