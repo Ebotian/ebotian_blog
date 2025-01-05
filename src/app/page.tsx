@@ -1,59 +1,30 @@
 'use client'
+
 import Link from 'next/link'
-import { getPostsByMonth, countWords } from '../lib/posts'
-import { useEffect, useState } from 'react'
+import { getPostsByMonth } from '../lib/posts'
+import { useState } from 'react'
 
 export default function Home() {
-  const [bgColor, setBgColor] = useState('#1a1a1a')
   const postsByMonth = getPostsByMonth()
   const totalWordCount = Object.values(postsByMonth).flat().reduce((total, post) => total + (post.wordCount || 0), 0)
-
-  useEffect(() => {
-    const img = new Image()
-    img.src = '/background.png'
-    img.crossOrigin = 'Anonymous'
-
-    img.onload = () => {
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      canvas.width = img.width
-      canvas.height = img.height
-
-      if (ctx) {
-        ctx.drawImage(img, 0, 0)
-        const edges = [
-          ctx.getImageData(0, 0, 1, 1).data,
-          ctx.getImageData(canvas.width-1, 0, 1, 1).data,
-          ctx.getImageData(0, canvas.height-1, 1, 1).data,
-          ctx.getImageData(canvas.width-1, canvas.height-1, 1, 1).data
-        ]
-        const avgColor = edges.reduce((acc, pixel) => ({
-          r: acc.r + pixel[0]/4,
-          g: acc.g + pixel[1]/4,
-          b: acc.b + pixel[2]/4
-        }), {r:0, g:0, b:0})
-
-        setBgColor(`rgb(${Math.round(avgColor.r)}, ${Math.round(avgColor.g)}, ${Math.round(avgColor.b)})`)
-      }
-    }
-  }, [])
 
   return (
     <div>
       <div className="h-screen flex flex-col items-center justify-center relative overflow-hidden"
         style={{
-          backgroundColor: bgColor,
+          backgroundColor: '#ffffff',
           backgroundImage: 'url("/background.png")',
           backgroundSize: 'contain',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
+          border: '10px solid white'
         }}>
         <h1 className="text-6xl font-bold text-center bg-gradient-to-r from-yellow-100/95 via-emerald-100/95 to-pink-100/95 text-transparent bg-clip-text"
-          style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>
+          style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
           欢迎来到 Ebotian 的博客
         </h1>
         <p className="text-2xl mt-4 bg-gradient-to-r from-blue-100/95 via-cyan-100/95 to-teal-100/95 text-transparent bg-clip-text"
-          style={{textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>
+          style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
           总字数：{totalWordCount} 字
         </p>
         <a href="https://www.pixiv.net/"
