@@ -1,8 +1,5 @@
-'use client'
-
 import Link from 'next/link'
 import { getPostsByMonth } from '../lib/posts'
-import { useState } from 'react'
 
 export default function Home() {
   const postsByMonth = getPostsByMonth()
