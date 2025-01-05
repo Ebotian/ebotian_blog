@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 import Search from '../components/Search'
 import dynamic from 'next/dynamic'
+import MusicPlayer from '../components/MusicPlayer'
 
 const GoogleAnalytics = dynamic(() => import('../components/GoogleAnalytics'), { ssr: false })
 
@@ -44,6 +45,7 @@ export default function RootLayout({
         </main>
         <footer className="bg-primary text-white p-4 mt-auto">
           <div className="container mx-auto text-center">
+            <MusicPlayer songId="2131307501" autoPlay={true} />
             © 2024 Ebotian 的博客. All rights reserved.
           </div>
         </footer>
