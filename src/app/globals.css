@@ -49,3 +49,18 @@ body {
 		text-wrap: balance;
 	}
 }
+
+:root {
+	--card-bg: #f8f4e9; /* 添加米黄色卡片背景 */
+	--card-hover: #f3ecd7; /* 添加hover状态的深米黄色 */
+}
+
+/* 添加卡片基础样式 */
+.card {
+	background-color: var(--card-bg);
+	transition: background-color 0.3s ease;
+}
+
+.card:hover {
+	background-color: var(--card-hover);
+}
