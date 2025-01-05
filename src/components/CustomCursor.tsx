@@ -6,17 +6,46 @@ import { motion } from 'framer-motion'
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isPointer, setIsPointer] = useState(false)
+  const [isTouching, setIsTouching] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    // 检测是否为移动设备
+    setIsMobile(window.innerWidth <= 768)
+
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
       const target = e.target as HTMLElement
       setIsPointer(window.getComputedStyle(target).cursor === 'pointer')
     }
 
+    const handleTouchStart = (e: TouchEvent) => {
+      setIsTouching(true)
+      setMousePosition({ x: e.touches[0].clientX, y: e.touches[0].clientY })
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isTouching) {
+        setMousePosition({ x: e.touches[0].clientX, y: e.touches[0].clientY })
+      }
+    }
+
+    const handleTouchEnd = () => {
+      setIsTouching(false)
+    }
+
     window.addEventListener('mousemove', updateMousePosition)
-    return () => window.removeEventListener('mousemove', updateMousePosition)
-  }, [])
+    window.addEventListener('touchstart', handleTouchStart)
+    window.addEventListener('touchmove', handleTouchMove)
+    window.addEventListener('touchend', handleTouchEnd)
+
+    return () => {
+      window.removeEventListener('mousemove', updateMousePosition)
+      window.removeEventListener('touchstart', handleTouchStart)
+      window.removeEventListener('touchmove', handleTouchMove)
+      window.removeEventListener('touchend', handleTouchEnd)
+    }
+  }, [isTouching])
 
   // 生成五角星的点
   const pentagramPoints = Array.from({ length: 5 }).map((_, i) => {
@@ -31,8 +60,11 @@ export default function CustomCursor() {
     return `${r * Math.cos(angle)},${r * Math.sin(angle)}`
   }).join(' ')
 
+  // 如果是移动设备且没有触摸，不渲染光标
+  if (isMobile && !isTouching) return null
+
   return (
-    <>
+    <div className={`custom-cursor ${isTouching ? 'active' : ''}`}>
       {/* 彩色背景层 */}
       <motion.div
         className="fixed pointer-events-none z-20"
@@ -138,6 +170,6 @@ export default function CustomCursor() {
           </svg>
         </div>
       </motion.div>
-    </>
+    </div>
   )
 }

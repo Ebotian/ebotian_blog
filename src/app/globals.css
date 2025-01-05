@@ -20,43 +20,27 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 自定义鼠标样式 */
-* {
-	cursor: none !important;
+/* 桌面端隐藏默认光标 */
+@media (min-width: 769px) {
+	* {
+		cursor: none !important;
+	}
 }
 
-/* 可点击元素样式 */
-a,
-button,
-[role="button"],
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-select,
-input[type="radio"],
-input[type="checkbox"] {
-	cursor: none !important;
-}
-
-/* 移动设备保持默认鼠标 */
+/* 移动端样式 */
 @media (max-width: 768px) {
 	* {
 		cursor: auto !important;
 	}
+
+	/* 默认隐藏自定义光标 */
 	.custom-cursor {
 		display: none !important;
 	}
-	/* 移动设备上恢复可点击元素的默认光标 */
-	a,
-	button,
-	[role="button"],
-	input[type="submit"],
-	input[type="button"],
-	input[type="reset"],
-	select,
-	input[type="radio"],
-	input[type="checkbox"] {
-		cursor: pointer !important;
+
+	/* 点击时显示自定义光标 */
+	.custom-cursor.active {
+		display: block !important;
 	}
 }
 
