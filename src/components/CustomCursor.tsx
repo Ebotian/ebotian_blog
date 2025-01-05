@@ -26,7 +26,10 @@ export default function CustomCursor() {
 
     const handleTouchMove = (e: TouchEvent) => {
       if (isTouching) {
-        setMousePosition({ x: e.touches[0].clientX, y: e.touches[0].clientY })
+        // 使用 requestAnimationFrame 来优化性能
+        requestAnimationFrame(() => {
+          setMousePosition({ x: e.touches[0].clientX, y: e.touches[0].clientY })
+        });
       }
     }
 
