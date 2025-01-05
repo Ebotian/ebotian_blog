@@ -6,6 +6,7 @@ import { FaGithub, FaTwitter } from 'react-icons/fa'
 import Search from '../components/Search'
 import dynamic from 'next/dynamic'
 import MusicPlayer from '../components/MusicPlayer'
+import CustomCursor from '../components/CustomCursor'  // 添加这一行
 
 const GoogleAnalytics = dynamic(() => import('../components/GoogleAnalytics'), { ssr: false })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="zh" className="h-full">
       <body className={`${inter.className} flex flex-col min-h-full bg-background text-gray-800`}>
+        <CustomCursor />  {/* 添加这一行 */}
         <nav className="bg-primary text-white p-4">
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <Link href="/" className="text-2xl font-bold hover:text-secondary mb-4 md:mb-0">Ebotian 的博客</Link>
