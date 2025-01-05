@@ -36,7 +36,6 @@ select,
 input[type="radio"],
 input[type="checkbox"] {
 	cursor: none !important;
-	transition: opacity 0.2s ease;
 }
 
 /* 移动设备保持默认鼠标 */
