@@ -120,43 +120,6 @@ export default function CustomCursor() {
           </svg>
         </div>
       </motion.div>
-
-      {/* 外层魔法阵 - 八角星 */}
-      <motion.div
-        className="fixed pointer-events-none z-20"
-        animate={{
-          x: mousePosition.x - 40,
-          y: mousePosition.y - 40,
-          rotate: 360,
-        }}
-        transition={{
-          rotate: {
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear"
-          },
-          x: { duration: 0 },
-          y: { duration: 0 }
-        }}
-      >
-        <div className="w-20 h-20 relative">
-          <div className="absolute inset-0 rounded-full
-            bg-[conic-gradient(from_0deg,#ff0000,#ff8800,#ffff00,#88ff00,#00ff00,#00ff88,#00ffff,#0088ff,#0000ff,#8800ff,#ff00ff,#ff0088,#ff0000)]
-            opacity-20"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div
-                key={i}
-                className="absolute h-full w-[2px] bg-white origin-bottom"
-                style={{
-                  transform: `rotate(${i * 45}deg)`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </motion.div>
     </>
   )
 }
