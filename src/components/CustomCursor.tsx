@@ -20,87 +20,89 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* 主光标 - 箭头 */}
+      {/* 主光标 - 哥特式十字架 */}
       <motion.div
         className="fixed pointer-events-none z-50 mix-blend-difference"
         animate={{
-          x: mousePosition.x,
-          y: mousePosition.y,
+          x: mousePosition.x - 20,
+          y: mousePosition.y - 20,
+          scale: isPointer ? 1.2 : 1,
+          rotate: 45,
         }}
         transition={{
           duration: 0,
           ease: "linear"
         }}
       >
-        <div className="w-[20px] h-[20px] border-l-[2px] border-t-[2px] border-white transform -rotate-45 relative bottom-1 right-1" />
-      </motion.div>
-
-      {/* 魔法阵 - 内圈 */}
-      <motion.div
-        className="fixed pointer-events-none z-40"
-        animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
-          rotate: mousePosition.x * 0.1,
-          scale: isPointer ? 1.2 : 1,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 30,
-        }}
-      >
-        <div className="w-10 h-10 rounded-full border border-white/30 relative">
-          {/* 十字装饰 */}
-          <div className="absolute inset-0 border-t border-l border-white/20 transform rotate-45" />
-          <div className="absolute inset-0 border-b border-r border-white/20 transform rotate-45" />
+        <div className="w-10 h-10 relative">
+          {/* 十字架主体 */}
+          <div className="absolute inset-0 border-2 border-white bg-white" />
+          {/* 装饰性花纹 */}
+          <div className="absolute inset-0 border border-white transform rotate-45" />
+          <div className="absolute inset-1 border border-white transform -rotate-45" />
+          {/* 中心宝石 */}
+          <div className="absolute inset-3 bg-white rounded-full" />
         </div>
       </motion.div>
 
-      {/* 魔法阵 - 外圈 */}
+      {/* 外环装饰 - 哥特式花纹 */}
       <motion.div
-        className="fixed pointer-events-none z-30"
+        className="fixed pointer-events-none z-40"
         animate={{
-          x: mousePosition.x - 30,
-          y: mousePosition.y - 30,
+          x: mousePosition.x - 32,
+          y: mousePosition.y - 32,
+          scale: isPointer ? 1.3 : 1,
           rotate: -mousePosition.x * 0.05,
-          scale: isPointer ? 1.1 : 0.9,
         }}
         transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 25,
+          type: "tween",
+          duration: 0.15
         }}
       >
-        <div className="w-[60px] h-[60px] rounded-full border border-white/20 relative">
-          {/* 装饰性光点 */}
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/30 rounded-full"
-              style={{
-                transform: `rotate(${i * 45}deg) translateY(-30px)`,
-              }}
-            />
-          ))}
+        <div className="w-16 h-16 relative">
+          {/* 主环 */}
+          <div className="absolute inset-0 border-2 border-white/40 rounded-full" />
+          {/* 装饰性花纹 */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-6 bg-gradient-to-b from-white/40 to-transparent"
+                style={{
+                  transform: `rotate(${i * 45}deg) translateY(-16px)`,
+                }}
+              />
+            ))}
+          </div>
         </div>
       </motion.div>
 
       {/* 装饰性光晕 */}
       <motion.div
-        className="fixed pointer-events-none z-20"
+        className="fixed pointer-events-none z-30 opacity-30"
         animate={{
-          x: mousePosition.x - 40,
-          y: mousePosition.y - 40,
-          scale: isPointer ? 1.2 : 1,
+          x: mousePosition.x - 50,
+          y: mousePosition.y - 50,
+          scale: isPointer ? 1.1 : 0.8,
         }}
         transition={{
-          type: "spring",
-          stiffness: 300,
-          damping: 20,
+          type: "tween",
+          duration: 0.2
         }}
       >
-        <div className="w-20 h-20 rounded-full bg-white/5 backdrop-blur-sm" />
+        <div className="w-24 h-24 relative">
+          <div className="absolute inset-0 border border-white rounded-full" />
+          {/* 装饰性花边 */}
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-3 bg-gradient-to-b from-white/20 to-transparent"
+              style={{
+                transform: `rotate(${i * 30}deg) translateY(-36px)`,
+              }}
+            />
+          ))}
+        </div>
       </motion.div>
     </>
   )

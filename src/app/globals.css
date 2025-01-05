@@ -25,6 +25,20 @@ body {
 	cursor: none !important;
 }
 
+/* 可点击元素样式 */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+select,
+input[type="radio"],
+input[type="checkbox"] {
+	cursor: none !important;
+	transition: opacity 0.2s ease;
+}
+
 /* 移动设备保持默认鼠标 */
 @media (max-width: 768px) {
 	* {
@@ -32,6 +46,18 @@ body {
 	}
 	.custom-cursor {
 		display: none !important;
+	}
+	/* 移动设备上恢复可点击元素的默认光标 */
+	a,
+	button,
+	[role="button"],
+	input[type="submit"],
+	input[type="button"],
+	input[type="reset"],
+	select,
+	input[type="radio"],
+	input[type="checkbox"] {
+		cursor: pointer !important;
 	}
 }
 
