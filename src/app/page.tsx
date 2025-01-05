@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import { getPostsByMonth, countWords } from '../lib/posts'
 import { useEffect, useState } from 'react'
