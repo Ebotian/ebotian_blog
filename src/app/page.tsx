@@ -13,8 +13,7 @@ export default function Home() {
           backgroundImage: 'url("/background.png")',
           backgroundSize: 'contain',
           backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          border: '10px solid white'
+          backgroundRepeat: 'no-repeat'
         }}>
         <h1 className="text-6xl font-bold text-center bg-gradient-to-r from-yellow-100/95 via-emerald-100/95 to-pink-100/95 text-transparent bg-clip-text"
           style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
