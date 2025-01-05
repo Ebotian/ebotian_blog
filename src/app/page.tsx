@@ -15,12 +15,8 @@ export default function Home() {
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat'
         }}>
-        <h1 className="text-6xl font-bold text-center"
-          style={{ color: '#F6EB61', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}> {/* 使用 IKEA 黄色 */}
-          欢迎来到 Ebotian 的博客
-        </h1>
         <p className="text-2xl mt-4"
-          style={{ color: '#F6EB61', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}> {/* 使用 IKEA 黄色 */}
+          style={{ color: '#5062FF', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
           总字数：{totalWordCount} 字
         </p>
         <a href="https://www.pixiv.net/"
