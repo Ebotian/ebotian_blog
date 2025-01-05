@@ -33,16 +33,34 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* 中心圆点 */}
+      {/* 彩色背景层 */}
       <motion.div
-        className="fixed pointer-events-none z-50"
+        className="fixed pointer-events-none z-20"
         animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
+          x: mousePosition.x - 40,
+          y: mousePosition.y - 40,
+          rotate: 360,
         }}
-        transition={{ duration: 0, ease: "linear" }}
+        transition={{
+          rotate: {
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear"
+          },
+          x: { duration: 0 },
+          y: { duration: 0 }
+        }}
       >
-        <div className="w-2 h-2 bg-white rounded-full" />
+        <div className="w-20 h-20 relative">
+          {/* 彩色背景 */}
+          <div className="absolute inset-0 rounded-full
+            bg-[conic-gradient(from_0deg,#ff0000,#ff8800,#ffff00,#88ff00,#00ff00,#00ff88,#00ffff,#0088ff,#0000ff,#8800ff,#ff00ff,#ff0088,#ff0000)]
+            opacity-20"
+          />
+          {/* 外层双圈 */}
+          <div className="absolute inset-[-2px] rounded-full border-2 border-white/80" />
+          <div className="absolute inset-[-4px] rounded-full border-[3px] border-white/60" />
+        </div>
       </motion.div>
 
       {/* 内层魔法阵 - 五角星 */}
