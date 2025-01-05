@@ -23,17 +23,23 @@ body {
 	overscroll-behavior: none;
 	overflow-x: hidden;
 	-webkit-font-smoothing: antialiased;
+	position: relative;
 }
 
-/* 桌面端隐藏默认光标 */
+/* Desktop cursor styles */
 @media (min-width: 769px) {
 	* {
 		cursor: none !important;
 	}
 }
 
-/* 全局光标样式优化 */
+/* Global cursor optimization */
 .custom-cursor {
+	position: fixed;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	z-index: 9999;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	-webkit-perspective: 1000;
@@ -41,8 +47,10 @@ body {
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	will-change: transform;
-	pointer-events: none;
-	z-index: 9999;
+	user-select: none;
+	touch-action: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .custom-cursor * {
@@ -50,27 +58,28 @@ body {
 	-webkit-touch-callout: none !important;
 	-webkit-tap-highlight-color: transparent !important;
 	user-select: none !important;
+	pointer-events: none !important;
 }
 
 .custom-cursor .motion-div {
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
+	will-change: transform;
 }
 
-/* 移动端样式优化 */
+/* Mobile optimization */
 @media (max-width: 768px) {
 	* {
 		cursor: auto !important;
 	}
 
 	.custom-cursor {
-		display: none !important;
-		touch-action: none;
+		display: none;
 	}
 
 	.custom-cursor.active {
-		display: block !important;
+		display: block;
 		position: fixed;
 		pointer-events: none;
 		z-index: 9999;
@@ -82,16 +91,27 @@ body {
 	.custom-cursor.active * {
 		transition: none !important;
 		animation-duration: 0s !important;
+		touch-action: none !important;
 	}
 }
 
+/* Cursor animation optimization */
+.custom-cursor svg,
+.custom-cursor .rounded-full {
+	will-change: transform;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	transform: translateZ(0);
+}
+
+/* Text utilities */
 @layer utilities {
 	.text-balance {
 		text-wrap: balance;
 	}
 }
 
-/* 卡片样式 */
+/* Card styles */
 .card {
 	background-color: var(--card-bg);
 	transition: background-color 0.3s ease;
@@ -100,4 +120,12 @@ body {
 
 .card:hover {
 	background-color: var(--card-hover);
+}
+
+/* Animation performance */
+@media (prefers-reduced-motion: reduce) {
+	.custom-cursor * {
+		animation: none !important;
+		transition: none !important;
+	}
 }

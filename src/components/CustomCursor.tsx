@@ -1,45 +1,41 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { motion, useTransform, useMotionValue } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isPointer, setIsPointer] = useState(false)
   const [isTouching, setIsTouching] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
   useEffect(() => {
     setIsMobile(window.innerWidth <= 768)
 
-    let rafId: number
-
-    const updatePosition = (clientX: number, clientY: number) => {
-      rafId = requestAnimationFrame(() => {
-        x.set(clientX)
-        y.set(clientY)
+    const updateMousePosition = (e: MouseEvent) => {
+      requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY })
+        const target = e.target as HTMLElement
+        setIsPointer(window.getComputedStyle(target).cursor === 'pointer')
       })
     }
 
-    const updateMousePosition = (e: MouseEvent) => {
-      updatePosition(e.clientX, e.clientY)
-      const target = e.target as HTMLElement
-      setIsPointer(window.getComputedStyle(target).cursor === 'pointer')
-    }
-
     const handleTouchStart = (e: TouchEvent) => {
-      e.preventDefault()
       setIsTouching(true)
-      updatePosition(e.touches[0].clientX, e.touches[0].clientY)
+      setMousePosition({
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY
+      })
     }
 
     const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault()
       if (isTouching) {
-        updatePosition(e.touches[0].clientX, e.touches[0].clientY)
+        requestAnimationFrame(() => {
+          setMousePosition({
+            x: e.touches[0].clientX,
+            y: e.touches[0].clientY
+          })
+        })
       }
     }
 
@@ -47,9 +43,9 @@ export default function CustomCursor() {
       setIsTouching(false)
     }
 
-    window.addEventListener('mousemove', updateMousePosition, { passive: true })
-    window.addEventListener('touchstart', handleTouchStart, { passive: false })
-    window.addEventListener('touchmove', handleTouchMove, { passive: false })
+    window.addEventListener('mousemove', updateMousePosition)
+    window.addEventListener('touchstart', handleTouchStart)
+    window.addEventListener('touchmove', handleTouchMove)
     window.addEventListener('touchend', handleTouchEnd)
 
     return () => {
@@ -57,7 +53,6 @@ export default function CustomCursor() {
       window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchmove', handleTouchMove)
       window.removeEventListener('touchend', handleTouchEnd)
-      cancelAnimationFrame(rafId)
     }
   }, [isTouching])
 
@@ -74,20 +69,17 @@ export default function CustomCursor() {
 
   if (isMobile && !isTouching) return null
 
-  const outerX = useTransform(x, value => value - 40)
-  const middleX = useTransform(x, value => value - 30)
-  const innerX = useTransform(x, value => value - 20)
-  const outerY = useTransform(y, value => value - 40)
-  const middleY = useTransform(y, value => value - 30)
-  const innerY = useTransform(y, value => value - 20)
-
   return (
     <div
-      ref={cursorRef}
       className={`custom-cursor ${isTouching ? 'active' : ''}`}
       style={{
-        touchAction: 'none',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+        zIndex: 9999,
         userSelect: 'none',
+        touchAction: 'none',
         WebkitTouchCallout: 'none',
         WebkitTapHighlightColor: 'transparent'
       }}
@@ -95,11 +87,9 @@ export default function CustomCursor() {
       <motion.div
         className="fixed pointer-events-none z-20"
         style={{
-          x: outerX,
-          y: outerY,
-          willChange: 'transform',
-          backfaceVisibility: 'hidden',
-          WebkitBackfaceVisibility: 'hidden'
+          x: mousePosition.x - 40,
+          y: mousePosition.y - 40,
+          willChange: 'transform'
         }}
         animate={{ rotate: 360 }}
         transition={{
@@ -120,8 +110,8 @@ export default function CustomCursor() {
       <motion.div
         className="fixed pointer-events-none z-40"
         style={{
-          x: innerX,
-          y: innerY,
+          x: mousePosition.x - 20,
+          y: mousePosition.y - 20,
           willChange: 'transform'
         }}
         animate={{ rotate: 360 }}
@@ -146,8 +136,8 @@ export default function CustomCursor() {
       <motion.div
         className="fixed pointer-events-none z-30"
         style={{
-          x: middleX,
-          y: middleY,
+          x: mousePosition.x - 30,
+          y: mousePosition.y - 30,
           willChange: 'transform'
         }}
         animate={{ rotate: -360 }}
