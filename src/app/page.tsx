@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <div>
       <div className="h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center relative" style={{backgroundImage: 'url("/background.png")'}}>
-        <h1 className="text-6xl font-bold text-center bg-gradient-to-r from-pink-400/90 via-purple-400/90 to-indigo-400/90 text-transparent bg-clip-text" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>欢迎来到 Ebotian 的博客</h1>
-        <p className="text-2xl mt-4 bg-gradient-to-r from-cyan-400/90 via-blue-400/90 to-indigo-400/90 text-transparent bg-clip-text" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>总字数：{totalWordCount} 字</p>
-        <a href="https://www.pixiv.net/artworks/110554663" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 text-white text-sm opacity-70 hover:opacity-100 transition-opacity">
+        <h1 className="text-6xl font-bold text-center bg-gradient-to-r from-pink-500/95 via-fuchsia-500/95 to-violet-500/95 text-transparent bg-clip-text" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>欢迎来到 Ebotian 的博客</h1>
+        <p className="text-2xl mt-4 bg-gradient-to-r from-sky-500/95 via-blue-500/95 to-indigo-500/95 text-transparent bg-clip-text" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>总字数：{totalWordCount} 字</p>
+        <a href="https://www.pixiv.net/" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 text-white text-sm opacity-70 hover:opacity-100 transition-opacity">
           背景图片来源: Pixiv
         </a>
       </div>
