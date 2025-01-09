@@ -64,5 +64,5 @@ def process_directory(directory):
                 update_file_with_date(file_path)
 
 # 使用示例
-target_directory = r'C:\Users\Lenovo\Desktop\ebotian-blog\content\posts\xiaomi_notes'  # 替换为您的目标文件夹路径
+target_directory = r'C:\Users\Lenovo\Desktop\ebotian-blog\content\posts\ysyx_markdown_notes'  # 替换为您的目标文件夹路径
 process_directory(target_directory)
