@@ -379,9 +379,7 @@ hyprland
 
 23. 输入法配置(yay):
 
-```bash
-yay -S firefox noto-fonts-cjk fcitx5 fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-qt fcitx5-gtk fcitx5-material-color fcitx5-configtool
-```
+`yay -S firefox noto-fonts-cjk fcitx5 fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-qt fcitx5-gtk fcitx5-material-color fcitx5-configtool`
 
 然后用`fcitx5-configtool`配置输入法,添加`Pinyin`输入法,然后在`hyprland`中设置`fcitx5`为输入法,重启后即可使用中文输入法
 
