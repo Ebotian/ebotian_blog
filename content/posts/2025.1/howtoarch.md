@@ -23,9 +23,9 @@ date: 2025-01-15
 3. 然后需要禁用你电脑的"UEFI 安全启动"选项,以便我们能从 U 盘启动系统,具体方法可以根据你的电脑型号搜索
 4. 重启电脑,按照提示进入 BIOS(根据不同型号,一般需要在开机时迅速连续按一个键,我这里是`F12`),选择从 U 盘启动(一般来说,就是不是 WINDOWS 的那个选项,当然你也可以通过 U 盘型号确定这个选择),进入 Arch Linux 安装界面
 5. 当引导加载程序菜单出现时,如果你使用了 ISO 映像,选择 `Arch Linux install medium`并按`Enter`进入安装环境。键盘输入`ip link`之后应该有类似于下面的输出:
-   ![iplink](a185cf558b29fd70ce67ee9d054c1e98.jpg)
+   ![iplink](/2025.1/iplink.jpg)
 6. 以上过程成功说明你的键盘输入 OK,网络连接硬件条件 OK.你可以休息一下.**注意接下来的命令大多有按`tag`键补全或者提示的功能,在我们输入长命令时很有用.键盘有方向键可以按上箭头和下箭头寻找历史命令,左右箭头移动输入光标,这对输入重复和相似命令很有用.**
-7. 接下来我连接无线网:输入`iwctl`进入新的交互界面,输入`device list`:![devicelist](33ad8da5b949304b72edc267cd76cc93.jpg)可以看到我的网卡可能默认被关闭了,现在要重新打开.输入`quit`退出 iwctl,输入 rfkill 检查:![rfkill](c9318d86b4911402f9a0fd61830ab7c2.jpg)看到 block,说明网卡被禁用了,输入`rfkill unblock wifi`解除禁用,再次输入`iwctl`进入交互界面,这里我的网卡是`wlan0`,接下来的命令我以的这个网卡名字为例.输入`device [name] set-property Powered on`打开网卡,输入`station wlan0 scan`扫描附近的无线网络,输入`station wlan0 get-networks`找到你的网络名,输入`station wlan0 connect [networkname]`连接网络,输入密码,连接成功后使用`quit`退出.至此基本网络连接完毕.可以通过在终端输入`ping baidu.com`来测试网络连接(有不断的输出就是成功了,通过`ctrl+c`可以中止命令).
+7. 接下来我连接无线网:输入`iwctl`进入新的交互界面,输入`device list`:![devicelist](/2025.1/devicelist.jpg)可以看到我的网卡可能默认被关闭了,现在要重新打开.输入`quit`退出 iwctl,输入 rfkill 检查:![rfkill](/2025.1/rfkill.jpg)看到 block,说明网卡被禁用了,输入`rfkill unblock wifi`解除禁用,再次输入`iwctl`进入交互界面,这里我的网卡是`wlan0`,接下来的命令我以的这个网卡名字为例.输入`device [name] set-property Powered on`打开网卡,输入`station wlan0 scan`扫描附近的无线网络,输入`station wlan0 get-networks`找到你的网络名,输入`station wlan0 connect [networkname]`连接网络,输入密码,连接成功后使用`quit`退出.至此基本网络连接完毕.可以通过在终端输入`ping baidu.com`来测试网络连接(有不断的输出就是成功了,通过`ctrl+c`可以中止命令).
 8. 进行磁盘分区:**若你没有磁盘分区熟练经验,建议对欲操作的硬盘全盘所有数据进行备份**输入`fdisk -l`查看磁盘信息,找到你要安装的磁盘,我这里是`/dev/nvme0n1`(一块固态硬盘),输入`fdisk /dev/nvme0n1`准备对此硬盘分区.由于我事先将准备装系统的空间格式化为了`ntfs`,在这里是可以看见有 200G 的对应空间`/dev/nvme0n1p4`(注意这个`4`).我准备在这 200G 中分 3 个空间,分别用于启动工具`grub`,扩展内存`swap`和系统所在.下面介绍流程:**以下所说的`默认`指不输入任何东西直接按`enter`一行所写的输入结束后要按`enter`**
 
 - 输入 `p` 查看当前分区表，看到有 `/dev/nvme0n1p4`。

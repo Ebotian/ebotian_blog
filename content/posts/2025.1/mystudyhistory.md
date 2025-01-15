@@ -2,4 +2,4 @@
 date: 2025-01-08
 ---
 
-![alt text](IMG_20250110_001539.jpg)
+![alt text](/2025.1/stuhis.jpg)
