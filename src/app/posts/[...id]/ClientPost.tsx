@@ -3,13 +3,33 @@
 import { useEffect, useState } from 'react'
 import { FaTwitter, FaFacebook } from 'react-icons/fa'
 import { SiBilibili } from 'react-icons/si'
+import { remark } from 'remark'
+import html from 'remark-html'
 
-export default function ClientPost({ postData }) {
+interface PostData {
+  title: string;
+  date: string;
+  wordCount: number;
+  content: string;
+}
+
+interface ClientPostProps {
+  postData: PostData;
+}
+
+export default function ClientPost({ postData }: ClientPostProps) {
   const [currentUrl, setCurrentUrl] = useState('')
+  const [contentHtml, setContentHtml] = useState('')
 
   useEffect(() => {
     setCurrentUrl(window.location.href)
-  }, [])
+    processMarkdown(postData.content).then(setContentHtml)
+  }, [postData.content])
+
+  async function processMarkdown(markdown: string) {
+    const result = await remark().use(html).process(markdown)
+    return result.toString()
+  }
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -19,7 +39,7 @@ export default function ClientPost({ postData }) {
           <div className="text-gray-500 mb-4">
             {postData.date} • {postData.wordCount} 字
           </div>
-          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </div>
       </article>
 
