@@ -3,6 +3,15 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import gfm from 'remark-gfm'
+
+interface PostData {
+  id: string;
+  title: string;
+  date: string;
+  contentHtml: string;
+  wordCount: number;
+}
 
 const postsDirectory = path.join(process.cwd(), 'content', 'posts')
 
@@ -62,14 +71,6 @@ export function countWords(str: string): number {
   return words.length + chineseCharacters.length;
 }
 
-interface PostData {
-  id: string;
-  title: string;
-  date: string;
-  contentHtml?: string;
-  wordCount?: number;
-}
-
 export function getSortedPostsData(): PostData[] {
   const fileNames = getFiles(postsDirectory)
   const allPostsData = fileNames.map((fileName): PostData => {
@@ -77,15 +78,15 @@ export function getSortedPostsData(): PostData[] {
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-    const date = getDateFromFile(fullPath, fileContents)
-    const processedContent = remark().use(html).processSync(fileContents)
+    const matterResult = matter(fileContents)
+    const processedContent = remark().use(html).processSync(matterResult.content)
     const contentHtml = processedContent.toString()
 
     return {
       id,
-      title: path.basename(id),
-      date: date,
-      contentHtml: contentHtml,
+      title: matterResult.data.title || path.basename(id),
+      date: getDateFromFile(fullPath, fileContents),
+      contentHtml,
       wordCount: countWords(contentHtml)
     }
   })
@@ -125,6 +126,7 @@ export function getPostData(id: string[]): PostData {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
     const processedContent = remark()
+      .use(gfm)
       .use(html)
       .processSync(matterResult.content)
     const contentHtml = processedContent.toString()
@@ -133,9 +135,9 @@ export function getPostData(id: string[]): PostData {
 
     return {
       id: id.join('/'),
-      title: path.basename(id[id.length - 1]),
+      title: matterResult.data.title || path.basename(id[id.length - 1]),
       contentHtml,
-      date: date,
+      date,
       wordCount: countWords(contentHtml)
     }
   } catch (error) {

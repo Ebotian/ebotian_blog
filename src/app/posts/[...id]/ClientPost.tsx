@@ -36,7 +36,7 @@ export default function ClientPost({ postData }: { postData: PostData }) {
       <div className="mt-8 bg-[var(--card-bg)] shadow-lg rounded-lg p-6">
         <h2 className="text-xl font-semibold mb-4">分享这篇文章</h2>
         <div className="flex space-x-4">
-          {/* Twitter分享 */}
+          {/* Twitter 分享 */}
           <a
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(postData.title)}&url=${encodeURIComponent(currentUrl)}`}
             target="_blank"
@@ -56,7 +56,7 @@ export default function ClientPost({ postData }: { postData: PostData }) {
             <FaBook size={24} />
           </a>
 
-          {/* Bilibili分享 */}
+          {/* Bilibili 分享 */}
           <a
             href={`https://t.bilibili.com/?tab=article&url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(postData.title)}`}
             target="_blank"

@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         primary: '#3091e0',
-secondary: '#64b0ee',
-background: '#cfdff2',
+        secondary: '#64b0ee',
+        background: '#cfdff2',
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -21,6 +21,18 @@ background: '#cfdff2',
               '&:hover': {
                 color: theme('colors.secondary'),
               },
+            },
+            code: {
+              color: theme('colors.green.500'),
+              backgroundColor: theme('colors.gray.100'),
+              padding: '0.2em 0.4em',
+              borderRadius: '0.3em',
+            },
+            pre: {
+              backgroundColor: theme('colors.gray.800'),
+              color: theme('colors.gray.100'),
+              padding: '1em',
+              borderRadius: '0.3em',
             },
           },
         },
