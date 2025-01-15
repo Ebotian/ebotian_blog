@@ -144,7 +144,8 @@ sudo systemctl start clash
  curl -I  https://youtube.com/
 ```
 
-如果第一行是`HTTP/1.1 200 Connection established`说明代理成功 18. 安装桌面环境
+如果第一行是`HTTP/1.1 200 Connection established`说明代理成功
+18. 安装桌面环境
 
 ```bash
 sudo pacman -Syu
