@@ -80,7 +80,16 @@ systemctl start NetworkManager
 nmtui
 ```
 
-通过 tui 图形界面配置网络(方向键和 enter). 14. 创建用户:输入`useradd -m -G wheel -s /bin/bash [username]`输入`passwd [username]`输入两次密码,输入`EDITOR=vim visudo`找到`# %wheel ALL=(ALL) ALL`取消注释号`#`,保存退出这里的`[username]`是你的用户名 15. 安装 grub:输入`pacman -S grub efibootmgr`安装 grub 和 efibootmgr,输入`grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`安装 grub,输入`grub-mkconfig -o /boot/grub/grub.cfg`生成 grub 配置文件 16. 重启:输入`exit`退出 chroot,输入`umount -R /mnt`卸载分区,输入`reboot`重启,拔掉 U 盘,进入 grub 启动界面,选择 Arch Linux 启动,进入系统.此时你有两个用户,一个是 root,一个是你刚刚创建的用户,应该用输入你的用户名(不是 root),输入密码,登录成功. 17. 安装 clash 并配置:输入`sudo pacman -S clash`安装 clash
+通过 tui 图形界面配置网络(方向键和 enter).
+
+14. 创建用户:输入`useradd -m -G wheel -s /bin/bash [username]`输入`passwd [username]`输入两次密码,输入`EDITOR=vim visudo`找到`# %wheel ALL=(ALL) ALL`取消注释号`#`,保存退出这里的`[username]`是你的用户名
+
+15. 安装 grub:输入`pacman -S grub efibootmgr`安装 grub 和 efibootmgr,输入`grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`安装 grub,输入`grub-mkconfig -o /boot/grub/grub.cfg`生成 grub 配置文件
+
+16. 重启:输入`exit`退出 chroot,输入`umount -R /mnt`卸载分区,输入`reboot`重启,拔掉 U 盘,进入 grub 启动界面,选择 Arch Linux 启动,进入系统.此时你有两个用户,一个是 root,一个是你刚刚创建的用户,应该用输入你的用户名(不是 root),输入密码,登录成功.
+
+17. 安装 clash 并配置:输入`sudo pacman -S clash`安装 clash
+
 配置:
 
 ```bash
@@ -145,6 +154,7 @@ sudo systemctl start clash
 ```
 
 如果第一行是`HTTP/1.1 200 Connection established`说明代理成功
+
 18. 安装桌面环境
 
 ```bash
@@ -375,4 +385,4 @@ yay -S firefox noto-fonts-cjk fcitx5 fcitx5-chinese-addons fcitx5-pinyin-zhwiki 
 
 然后用`fcitx5-configtool`配置输入法,添加`Pinyin`输入法,然后在`hyprland`中设置`fcitx5`为输入法,重启后即可使用中文输入法
 
-24. 下点自己想下的东西,比如微信,qq,vscode等等
+24. 下点自己想下的东西,比如微信,qq,vscode 等等
