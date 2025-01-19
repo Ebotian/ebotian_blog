@@ -41,8 +41,11 @@ sudo systemctl start tor
 ```
 
 发邮件获取网桥(我使用 google 邮箱):
-收件人: bridges@torproject.org
-主题:get transport obfs4
+
+收件人: `bridges@torproject.org`
+
+主题:`get transport obfs4`
+
 内容:(空)
 
 回信示例:
