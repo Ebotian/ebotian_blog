@@ -111,3 +111,14 @@ HTTPSProxy 127.0.0.1:7890
 ```bash
 sudo reboot
 ```
+
+使用torbrowser-launcher安装浏览器
+
+```bash
+yay -S torbrowser-launcher
+torbrowser-launcher
+```
+
+然后应该会自动开始下载 tor 浏览器
+
+用这个命令之后就可以启动 tor 浏览器
