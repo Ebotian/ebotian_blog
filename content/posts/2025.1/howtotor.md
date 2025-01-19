@@ -112,7 +112,7 @@ HTTPSProxy 127.0.0.1:7890
 sudo reboot
 ```
 
-使用torbrowser-launcher安装浏览器
+使用 torbrowser-launcher 安装浏览器
 
 ```bash
 yay -S torbrowser-launcher
@@ -122,3 +122,14 @@ torbrowser-launcher
 然后应该会自动开始下载 tor 浏览器
 
 用这个命令之后就可以启动 tor 浏览器
+
+浏览器需要初始设置:
+
+在 tor 浏览器的设置里面:
+
+settings -> connection(左侧第五个图标) ->(滚轮到最下面)Advanced -> Settings -> (点方框打对勾)`I use a proxy to access the Internet` -> (下拉菜单选择`Proxy type`)`HTTP/HTTPS` -> Address:`127.0.0.1` Port:`7890` -> `OK`
+
+然后去上面`Bridges`里面填入你的网桥:
+`Add new bridge` -> (粘贴你的网桥,只粘贴一个) -> `next` -> `OK`
+
+最上面的`Tor Network`点击`Connect`
