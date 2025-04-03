@@ -140,7 +140,7 @@ def main():
     args = parser.parse_args()
 
     # 获取API密钥，优先级：命令行参数 > 环境变量 > 默认值
-    api_key = args.api_key or os.environ.get("DEEPSEEK_API_KEY") or "sk-6a0f781695364c888cf903d1215a846a"
+    api_key = args.api_key or os.environ.get("DEEPSEEK_API_KEY") or "<MY_API_KEY>"
 
     corrector = HandwrittenTextCorrector(api_key=api_key)
     corrector.process_files(
