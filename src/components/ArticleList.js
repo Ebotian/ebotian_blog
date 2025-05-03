@@ -8,22 +8,20 @@ export default function ArticleList({ posts }) {
 	return (
 		<div className="flex flex-col gap-6">
 			{posts.map((post) => (
-				<Link key={post.slug} href={`/${post.slug}`} passHref legacyBehavior>
-					<a>
-						<Card>
-							<div className="flex flex-col md:flex-row md:items-center justify-between">
-								<div>
-									<h2 className="text-xl font-bold mb-1 dos-title">
-										{post.title}
-									</h2>
-									<p className="text-sm text-green-300 mb-2">{post.date}</p>
-									<p className="text-base text-green-200 line-clamp-2">
-										{post.excerpt}
-									</p>
-								</div>
+				<Link key={post.slug} href={`/${post.slug}`}>
+					<Card>
+						<div className="flex flex-col md:flex-row md:items-center justify-between">
+							<div>
+								<h2 className="text-xl font-bold mb-1 dos-title">
+									{post.title}
+								</h2>
+								<p className="text-sm text-green-300 mb-2">{post.date}</p>
+								<p className="text-base text-green-200 line-clamp-2">
+									{post.excerpt}
+								</p>
 							</div>
-						</Card>
-					</a>
+						</div>
+					</Card>
 				</Link>
 			))}
 		</div>

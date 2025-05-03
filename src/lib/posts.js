@@ -44,7 +44,7 @@ export function getAllPostsMeta() {
     return {
       title: data.title || slug,
       date: dateStr,
-      excerpt: data.excerpt || content.slice(0, 120),
+      excerpt: data.excerpt || content.slice(0, 50),
       slug,
       ...restData,
     };
