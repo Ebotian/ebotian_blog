@@ -28,6 +28,10 @@ export function getAllPostsMeta() {
     // 生成 slug（相对 posts 目录的路径，去掉 .md 后缀，斜杠用 __ 代替）
     const relPath = path.relative(postsDirectory, filePath);
     const slug = relPath.replace(/\\/g, "/").replace(/\//g, "__").replace(/\.md$/, "");
+
+    const fileName = path.basename(filePath, ".md");
+
+
     // 处理 date 字段为字符串
     let dateStr = null;
     if (data.date) {
@@ -42,7 +46,7 @@ export function getAllPostsMeta() {
     // 只展开除 date 以外的 frontmatter 字段，避免 date 被覆盖为 Date 对象
     const { date, ...restData } = data;
     return {
-      title: data.title || slug,
+      title: data.title || fileName,
       date: dateStr,
       excerpt: data.excerpt || content.slice(0, 50),
       slug,
