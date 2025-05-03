@@ -4,8 +4,8 @@ import ArticleContent from "../components/ArticleContent";
 import Profile from "../components/Profile";
 import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
-import { useEffect, useState } from "react"; // 移除了 useRef
-import UtterancesComments from "../components/UtterancesComments"; // 引入新组件
+import { useEffect, useState } from "react";
+import UtterancesComments from "../components/UtterancesComments";
 
 export async function getStaticPaths() {
 	const posts = await getAllPostsMeta();
@@ -17,22 +17,22 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const post = getPostBySlug(params.slug);
-	// 确保在 getPostBySlug 之后再处理 markdown
 	const contentHtml = await markdownToHtml(post.content || "");
-	const allPosts = getAllPostsMeta(); // 获取所有文章元数据用于搜索
+	const allPosts = getAllPostsMeta(); // Get all posts for search
 	return {
 		props: {
-			post: { ...post, contentHtml }, // 将 HTML 内容合并到 post 对象中
-			allPosts, // 传递所有文章数据给页面
+			post: { ...post, contentHtml },
+			allPosts,
 		},
 	};
 }
 
 export default function PostPage({ post, allPosts }) {
-	// --- 开始：与 index.js 一致的响应式逻辑 ---
+	// --- Start: Consistent Responsive Logic with index.js ---
 	const [displayMode, setDisplayMode] = useState({
 		isMobile: false,
 		useCompactProfile: false,
+		isLargeScreen: false, // State to track if screen is lg+
 	});
 
 	useEffect(() => {
@@ -40,86 +40,110 @@ export default function PostPage({ post, allPosts }) {
 			const width = window.innerWidth;
 			const height = window.innerHeight;
 			const isMobileView = width < 768;
-			// 调整紧凑模式的判断逻辑，与 index.js 保持一致
-			const needsCompact = !isMobileView && (width < 1024 || height < 650);
+			const isLargeView = width >= 1024; // lg breakpoint
+			// Consistent compact mode logic
+			const needsCompact =
+				!isMobileView && ((!isLargeView && width < 1024) || height < 650);
 			setDisplayMode({
 				isMobile: isMobileView,
 				useCompactProfile: needsCompact,
+				isLargeScreen: isLargeView, // Update lg state
 			});
 		}
-		handleResize(); // 初始检查
-		window.addEventListener("resize", handleResize); // 添加监听
-		return () => window.removeEventListener("resize", handleResize); // 清理监听
+		handleResize(); // Initial check
+		window.addEventListener("resize", handleResize); // Add listener
+		return () => window.removeEventListener("resize", handleResize); // Cleanup listener
 	}, []);
+	// --- End: Responsive Logic ---
 
-	// 根据桌面端的显示模式定义主内容的左内边距
-	const desktopLeftPadding = displayMode.useCompactProfile
-		? "md:pl-56" // 紧凑模式下的左内边距
-		: "md:pl-64"; // 常规模式下的左内边距
-	// --- 结束：响应式逻辑 ---
-
-	// Utterances 逻辑已移至 UtterancesComments 组件
+	// Define profile width class based on state
+	const profileWidthClass = displayMode.useCompactProfile ? "w-48" : "w-56";
 
 	return (
-		// 使用相对定位作为主容器
 		<div className="relative min-h-screen bg-black text-green-400 font-mono">
-			{/* 桌面端固定的个人资料卡片 */}
-			{/* 仅在非移动视图下渲染 */}
-			{!displayMode.isMobile && (
+			{/* Profile for MD screens ONLY (Tablet/Small Desktop) - Fixed Left */}
+			{/* Shown only between 768px and 1024px */}
+			{!displayMode.isMobile && !displayMode.isLargeScreen && (
 				<div
-					// 使用 fixed 定位，左侧固定，垂直居中
-					className={`fixed left-4 top-1/2 -translate-y-1/2 z-20 ${
-						displayMode.useCompactProfile ? "w-48" : "w-56" // 根据模式调整宽度
-					}`}
+					className={`fixed left-4 top-1/2 -translate-y-1/2 z-20 ${profileWidthClass}`}
 				>
-					{/* 传递 compact 状态 */}
 					<Profile compact={displayMode.useCompactProfile} />
 				</div>
 			)}
 
-			{/* 主内容区域 */}
-			{/* 在桌面端应用动态的左内边距以避免重叠 */}
+			{/* Main Content Area Wrapper */}
+			{/* Add left padding ONLY on MD screens to avoid overlap with the fixed profile */}
 			<div
-				className={`flex flex-col items-center pt-8 pb-20 px-4 sm:px-8 ${
-					!displayMode.isMobile ? desktopLeftPadding : "" // 仅在非移动视图应用左内边距
+				className={`pt-8 pb-20 px-4 sm:px-8 ${
+					!displayMode.isMobile && !displayMode.isLargeScreen // Apply only on MD
+						? displayMode.useCompactProfile
+							? "md:pl-56"
+							: "md:pl-64" // Dynamic padding based on compact mode
+						: "" // No padding needed on SM (mobile) or LG+ (large)
 				}`}
 			>
-				{/* 移动端个人资料卡片 */}
-				{/* 仅在移动视图下渲染 */}
-				{displayMode.isMobile && (
-					<div className="w-full max-w-2xl mb-6">
-						{/* 移动端始终使用紧凑模式 */}
-						<Profile compact={true} />
-					</div>
-				)}
+				{/* Centering container for overall layout */}
+				<div className="max-w-7xl mx-auto">
+					{/* Flex row layout for LG+ screens */}
+					<div className="lg:flex lg:justify-center lg:gap-8">
+						{/* Left Column: Profile (LG+ only, sticky) */}
+						<aside
+							className={`hidden lg:block ${profileWidthClass} flex-shrink-0`}
+						>
+							{/* Sticky container for Profile */}
+							<div className="sticky top-20 h-fit">
+								<Profile compact={displayMode.useCompactProfile} />
+							</div>
+						</aside>
 
-				{/* 搜索栏 - 保持与 index.js 一致 */}
-				<div className="w-full max-w-2xl mb-6">
-					{/* 传递 allPosts 用于搜索 */}
-					{/* onSearch 可以留空或实现页面跳转逻辑 */}
-					<SearchBar posts={allPosts} onSearch={() => {}} />
+						{/* Center Column: Main Content (Search, Article, Comments, Footer) */}
+						<div className="w-full max-w-2xl flex-shrink min-w-0 mx-auto lg:mx-0">
+							{/* Mobile Profile (Top) */}
+							{displayMode.isMobile && (
+								<div className={`w-full ${profileWidthClass} mx-auto mb-6`}>
+									<Profile compact={true} />
+								</div>
+							)}
+
+							{/* Search Bar */}
+							<div className="w-full mb-6">
+								{/* Pass allPosts for search functionality */}
+								<SearchBar
+									posts={allPosts}
+									onSearch={() => {
+										/* Implement search result navigation if needed */
+									}}
+								/>
+							</div>
+
+							{/* Article Content and Comments */}
+							<main className="w-full">
+								<ArticleContent
+									title={post.title}
+									date={post.date}
+									contentHtml={post.contentHtml}
+								/>
+								{/* Utterances Comments */}
+								<div className="mt-12">
+									{/* Key ensures component remounts on page change */}
+									<UtterancesComments key={post.slug} />
+								</div>
+							</main>
+
+							{/* Footer */}
+							<footer className="w-full mt-12">
+								<Footer />
+							</footer>
+						</div>
+
+						{/* Right Column: Placeholder (LG+ only) */}
+						{/* Add a placeholder to maintain spacing consistent with index.js */}
+						{/* Use the same width as TimelineNav (w-40) */}
+						<aside className="hidden lg:block w-40 flex-shrink-0">
+							{/* This space can be used for Table of Contents or other elements later */}
+						</aside>
+					</div>
 				</div>
-
-				{/* 文章内容和评论区 */}
-				<main className="w-full max-w-2xl flex-1">
-					<ArticleContent
-						title={post.title}
-						date={post.date}
-						contentHtml={post.contentHtml}
-					/>
-					{/* 使用 UtterancesComments 组件 */}
-					<div className="mt-12">
-						{/* 使用 key={post.slug} 强制重新挂载组件 */}
-						{/* 这确保了每次页面切换时，Utterances 组件 */}
-						{/* 都会经历完整的卸载和挂载过程，从而正确加载评论 */}
-						<UtterancesComments key={post.slug} />
-					</div>
-				</main>
-
-				{/* 页脚 */}
-				<footer className="w-full max-w-2xl mt-12">
-					<Footer />
-				</footer>
 			</div>
 		</div>
 	);

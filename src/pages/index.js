@@ -4,11 +4,11 @@ import SearchBar from "../components/SearchBar";
 import Profile from "../components/Profile";
 import Footer from "../components/Footer";
 import { getAllPostsMeta } from "../lib/posts";
-import TimelineNav from "../components/TimelineNav"; // *** 引入 TimelineNav ***
+import TimelineNav from "../components/TimelineNav";
 
 export async function getStaticProps() {
 	const posts = await getAllPostsMeta();
-	// *** 确保文章按日期降序排序，以便月份分组正确 ***
+	// Ensure posts are sorted descending by date
 	posts.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
 	return {
 		props: {
@@ -22,6 +22,7 @@ export default function Home({ posts }) {
 	const [displayMode, setDisplayMode] = useState({
 		isMobile: false,
 		useCompactProfile: false,
+		isLargeScreen: false, // State to track if screen is lg+
 	});
 
 	useEffect(() => {
@@ -29,28 +30,29 @@ export default function Home({ posts }) {
 			const width = window.innerWidth;
 			const height = window.innerHeight;
 			const isMobileView = width < 768;
-			const needsCompact = !isMobileView && (width < 1024 || height < 650);
+			const isLargeView = width >= 1024; // lg breakpoint
+			// Compact profile needed if not mobile AND (screen is small OR height is limited)
+			// On large screens, always use non-compact unless height is very limited
+			const needsCompact =
+				!isMobileView && ((!isLargeView && width < 1024) || height < 650);
 			setDisplayMode({
 				isMobile: isMobileView,
 				useCompactProfile: needsCompact,
+				isLargeScreen: isLargeView, // Update lg state
 			});
 		}
-		handleResize();
+		handleResize(); // Initial check
 		window.addEventListener("resize", handleResize);
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
 	const handleSearch = (results) => {
-		// *** 搜索后也要排序 ***
+		// Ensure search results are also sorted
 		results.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
 		setSearchResults(results);
 	};
 
-	const desktopLeftPadding = displayMode.useCompactProfile
-		? "md:pl-56"
-		: "md:pl-64";
-
-	// *** 提取唯一的月份 (YYYY-MM) ***
+	// Extract unique months for TimelineNav
 	const uniqueMonths = Array.from(
 		new Set(
 			searchResults
@@ -59,62 +61,92 @@ export default function Home({ posts }) {
 						? post.date.substring(0, 7)
 						: null
 				)
-				.filter((month) => month !== null) // 过滤掉无效日期产生的 null
+				.filter((month) => month !== null)
 		)
 	);
-	// uniqueMonths 现在是 ['2025-05', '2025-01', ...] (顺序取决于原始数据，但通常已排序)
+
+	// Define profile width class based on state
+	const profileWidthClass = displayMode.useCompactProfile ? "w-48" : "w-56";
 
 	return (
 		<div className="relative min-h-screen bg-black text-green-400 font-mono">
-			{/* 桌面端 Profile */}
-			{!displayMode.isMobile && (
+			{/* Profile for MD screens ONLY (Tablet/Small Desktop) - Fixed Left */}
+			{/* Shown only between 768px and 1024px */}
+			{!displayMode.isMobile && !displayMode.isLargeScreen && (
 				<div
-					className={`fixed left-4 top-1/2 -translate-y-1/2 z-20 ${
-						displayMode.useCompactProfile ? "w-48" : "w-56"
-					}`}
+					className={`fixed left-4 top-1/2 -translate-y-1/2 z-20 ${profileWidthClass}`}
 				>
 					<Profile compact={displayMode.useCompactProfile} />
 				</div>
 			)}
 
-			{/* 主内容区域 */}
+			{/* Main Content Area Wrapper */}
+			{/* Add left padding ONLY on MD screens to avoid overlap with the fixed profile */}
 			<div
-				className={`flex flex-col items-center pt-8 pb-20 px-4 sm:px-8 ${
-					!displayMode.isMobile ? desktopLeftPadding : ""
+				className={`pt-8 pb-20 px-4 sm:px-8 ${
+					!displayMode.isMobile && !displayMode.isLargeScreen // Apply only on MD
+						? displayMode.useCompactProfile
+							? "md:pl-56"
+							: "md:pl-64" // Dynamic padding based on compact mode
+						: "" // No padding needed on SM (mobile) or LG+ (large)
 				}`}
 			>
-				{/* 移动端 Profile */}
-				{displayMode.isMobile && (
-					<div className="w-full max-w-2xl mb-6">
-						<Profile compact={true} />
+				{/* Centering container for overall layout */}
+				{/* Use a wider container to accommodate 3 columns on LG+ */}
+				{/* Use justify-center to center the block of columns */}
+				<div className="max-w-7xl mx-auto">
+					{/* Flex row layout for LG+ screens */}
+					<div className="lg:flex lg:justify-center lg:gap-8">
+						{/* Left Column: Profile (LG+ only, sticky) */}
+						<aside
+							className={`hidden lg:block ${profileWidthClass} flex-shrink-0`}
+						>
+							{/* Sticky container for Profile */}
+							<div className="sticky top-20 h-fit">
+								{" "}
+								{/* Ensure sticky container has defined height context */}
+								<Profile compact={displayMode.useCompactProfile} />
+							</div>
+						</aside>
+
+						{/* Center Column: Main Content (Search, List, Footer) */}
+						{/* Constrained width, allows shrinking */}
+						<div className="w-full max-w-2xl flex-shrink min-w-0 mx-auto lg:mx-0">
+							{" "}
+							{/* Center on mobile/tablet, align left in flex on lg */}
+							{/* Mobile Profile (Top) */}
+							{displayMode.isMobile && (
+								<div className={`w-full ${profileWidthClass} mx-auto mb-6`}>
+									{" "}
+									{/* Center mobile profile */}
+									<Profile compact={true} />
+								</div>
+							)}
+							{/* Search Bar */}
+							{/* w-full ensures it takes the max-w-2xl from parent */}
+							<div className="w-full mb-6">
+								<SearchBar posts={posts} onSearch={handleSearch} />
+							</div>
+							{/* Article List */}
+							{/* w-full ensures it takes the max-w-2xl from parent */}
+							<main className="w-full">
+								<ArticleList posts={searchResults} />
+							</main>
+							{/* Footer */}
+							{/* w-full ensures it takes the max-w-2xl from parent */}
+							<footer className="w-full mt-12">
+								<Footer />
+							</footer>
+						</div>
+
+						{/* Right Column: Timeline (LG+ only, sticky) */}
+						{/* TimelineNav component handles its own width and sticky positioning */}
+						<aside className="hidden lg:block flex-shrink-0">
+							{/* TimelineNav includes sticky positioning internally */}
+							<TimelineNav months={uniqueMonths} />
+						</aside>
 					</div>
-				)}
-
-				{/* 搜索栏 */}
-				<div className="w-full max-w-2xl mb-6">
-					<SearchBar posts={posts} onSearch={handleSearch} />
 				</div>
-
-				{/* *** 主要内容布局调整：使用 Flexbox 包裹列表和时间轴 *** */}
-				<div className="w-full max-w-4xl flex justify-center">
-					{" "}
-					{/* 稍微加宽容器以容纳时间轴 */}
-					{/* 文章列表 */}
-					<main className="w-full max-w-2xl flex-1">
-						{" "}
-						{/* 限制列表最大宽度 */}
-						<ArticleList posts={searchResults} />
-					</main>
-					{/* 时间轴导航 (仅大屏幕显示) */}
-					<TimelineNav months={uniqueMonths} />
-				</div>
-
-				{/* 页脚 */}
-				<footer className="w-full max-w-2xl mt-12 mx-auto">
-					{" "}
-					{/* 确保页脚也居中 */}
-					<Footer />
-				</footer>
 			</div>
 		</div>
 	);
