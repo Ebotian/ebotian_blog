@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 import Footer from "../components/Footer";
 import { getAllPostsMeta } from "../lib/posts";
 import TimelineNav from "../components/TimelineNav";
+import { Analytics } from "@vercel/analytics/react"
 
 export async function getStaticProps() {
 	const posts = await getAllPostsMeta();
@@ -184,7 +185,8 @@ export default function Home({ posts, totalWordCount }) {
 							<footer className="w-full mt-12">
 								<Footer />
 							</footer>
-						</div>
+            </div>
+            <Analytics />
 
 						{/* Right Column: Timeline */}
 						<aside className="hidden lg:block flex-shrink-0">
