@@ -19,6 +19,14 @@ function getAllMarkdownFiles(dir, fileList = []) {
   return fileList;
 }
 
+// 统计中文字符数（不含空白）
+function countChineseChars(str) {
+  if (!str) return 0;
+  // 匹配所有中文字符（包括常用汉字、标点、全角符号等）
+  const matches = str.match(/[\u4e00-\u9fa5\u3400-\u4dbf\uff00-\uffef]/g);
+  return matches ? matches.length : 0;
+}
+
 // 获取所有文章的元数据（title, date, slug, excerpt 等）
 export function getAllPostsMeta() {
   const files = getAllMarkdownFiles(postsDirectory);
@@ -31,6 +39,8 @@ export function getAllPostsMeta() {
 
     const fileName = path.basename(filePath, ".md");
 
+    // 统计单篇文章中文字符数
+    const wordCount = countChineseChars(content);
 
     // 处理 date 字段为字符串
     let dateStr = null;
@@ -50,6 +60,7 @@ export function getAllPostsMeta() {
       date: dateStr,
       excerpt: data.excerpt || content.slice(0, 50),
       slug,
+      wordCount, // 新增字段
       ...restData,
     };
   });

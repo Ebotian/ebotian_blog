@@ -53,6 +53,12 @@ export default function ArticleList({ posts }) {
 										<h2 className="text-xl font-bold mb-1 dos-title">
 											{post.title}
 										</h2>
+										{/* 字数显示区域：在标题下方 */}
+										{typeof post.wordCount === "number" && (
+											<div className="text-xs text-blue-200/80 mb-1 text-right w-full pr-2">
+												字数：{post.wordCount}
+											</div>
+										)}
 										<p className="text-sm text-green-300 mb-2">{post.date}</p>
 										<p className="text-base text-green-200 line-clamp-2">
 											{post.excerpt}

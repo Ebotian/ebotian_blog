@@ -1,8 +1,15 @@
 import React from "react";
 
-export default function Profile({ compact = false }) {
+function formatCount(count) {
+	if (count === undefined || count === null) return "0";
+	if (count < 1000) {
+		return count.toLocaleString();
+	}
+	return (count / 1000).toFixed(1) + "k";
+}
+
+export default function Profile({ compact = false, totalWordCount }) {
 	return (
-		// Always use flex-col, adjust width and padding based on compact
 		<div
 			className={`flex flex-col items-center bg-gray-800 bg-opacity-90 border-2 border-blue-400 rounded-xl shadow-xl dos-card-profile ${
 				compact ? "w-full p-3" : "w-56 p-4"
@@ -11,25 +18,21 @@ export default function Profile({ compact = false }) {
 			<img
 				src="/avatar.jpg"
 				alt="avatar"
-				// Adjust size and bottom margin based on compact
 				className={`${
 					compact ? "w-16 h-16 mb-3" : "w-28 h-28 mb-2"
 				} rounded-full border-4 border-blue-300 shadow-md`}
 				draggable="false"
 			/>
-			{/* Text content container */}
 			<div className="flex flex-col items-center w-full">
 				<h2 className="text-lg font-bold text-blue-200 mt-1 mb-1 text-center">
 					Ebit
 				</h2>
 				<p className="text-sm text-blue-100 mb-2 text-center">
 					编程爱好者
-					{/* Conditionally render line break */}
 					{!compact && <br />}
 					欢迎交流！
 				</p>
-				{/* Icons container - center icons */}
-				<div className="flex justify-center space-x-3 mt-2">
+				<div className="flex justify-center space-x-3 mt-auto pt-2">
 					<a
 						href="mailto:yiboxiaotian@nuaa.edu.cn"
 						title="邮箱"
@@ -90,6 +93,12 @@ export default function Profile({ compact = false }) {
 						</svg>
 					</a>
 				</div>
+				{/* 总字数显示在底部 */}
+				{typeof totalWordCount === "number" && (
+					<p className="text-xs text-blue-200/80 mt-3 text-center">
+						全部文章总字数：{formatCount(totalWordCount)}
+					</p>
+				)}
 			</div>
 		</div>
 	);

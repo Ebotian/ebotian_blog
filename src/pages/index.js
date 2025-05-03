@@ -68,6 +68,11 @@ export default function Home({ posts }) {
 	// Define profile width class based on state
 	const profileWidthClass = displayMode.useCompactProfile ? "w-48" : "w-56";
 
+	// Calculate total word count for posts
+	const totalWordCount = searchResults.reduce((count, post) => {
+		return count + (post.wordCount || 0);
+	}, 0);
+
 	return (
 		<div className="relative min-h-screen bg-black text-green-400 font-mono">
 			{/* Profile for MD screens ONLY (Tablet/Small Desktop) - Fixed Left */}
@@ -76,7 +81,10 @@ export default function Home({ posts }) {
 				<div
 					className={`fixed left-4 top-1/2 -translate-y-1/2 z-20 ${profileWidthClass}`}
 				>
-					<Profile compact={displayMode.useCompactProfile} />
+					<Profile
+						compact={displayMode.useCompactProfile}
+						totalWordCount={totalWordCount}
+					/>
 				</div>
 			)}
 
@@ -105,7 +113,10 @@ export default function Home({ posts }) {
 							<div className="sticky top-20 h-fit">
 								{" "}
 								{/* Ensure sticky container has defined height context */}
-								<Profile compact={displayMode.useCompactProfile} />
+								<Profile
+									compact={displayMode.useCompactProfile}
+									totalWordCount={totalWordCount}
+								/>
 							</div>
 						</aside>
 
@@ -119,7 +130,7 @@ export default function Home({ posts }) {
 								<div className={`w-full ${profileWidthClass} mx-auto mb-6`}>
 									{" "}
 									{/* Center mobile profile */}
-									<Profile compact={true} />
+									<Profile compact={true} totalWordCount={totalWordCount} />
 								</div>
 							)}
 							{/* Search Bar */}
