@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 复古未来80s DOS风格全局样式 */
+body {
+	@apply bg-black text-green-400 font-mono;
+}
+
+.dos-title {
+	@apply font-mono tracking-widest text-green-300;
+	text-shadow: 0 0 2px #00ff00, 0 0 8px #00ff00;
+}
+
+.dos-card,
+.dos-card-profile {
+	@apply border-2 border-green-400 bg-gray-900 rounded-lg shadow-lg;
+}
+
+.dos-input {
+	@apply bg-black border-green-400 text-green-200;
+}
+
+.dos-footer {
+	@apply border-t border-green-700 bg-black bg-opacity-80;
+}
+
+.dos-article-content {
+	@apply prose prose-invert max-w-none text-green-100;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+	.dos-card-profile {
+		@apply w-full;
+	}
+}
