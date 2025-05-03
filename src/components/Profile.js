@@ -1,4 +1,5 @@
 import React from "react";
+import AsciiCard from "./AsciiCard";
 
 function formatCount(count) {
 	if (count === undefined || count === null) return "0";
@@ -99,6 +100,8 @@ export default function Profile({ compact = false, totalWordCount }) {
 						全部文章总字数：{formatCount(totalWordCount)}
 					</p>
 				)}
+				{/* 加入 ASCII 艺术卡片 */}
+				<AsciiCard />
 			</div>
 		</div>
 	);
