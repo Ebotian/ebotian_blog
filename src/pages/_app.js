@@ -1,31 +1,30 @@
-import "../styles/globals.css"; // Adjust path if your global CSS is elsewhere
+import "../styles/globals.css"; // 引入全局样式
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
 	const router = useRouter();
 
-	// Define animation variants
+	// 定义动画的不同状态
 	const variants = {
-		hidden: { opacity: 0, x: 0, y: 20 }, // Start slightly down and faded out
-		enter: { opacity: 1, x: 0, y: 0 }, // Fade in and move up to final position
-		exit: { opacity: 0, x: 0, y: -20 }, // Fade out and move slightly up
+		hidden: { opacity: 0, x: 0, y: 20 }, // 初始状态：稍微下移且透明
+		enter: { opacity: 1, x: 0, y: 0 }, // 进入状态：完全显示并回到原位
+		exit: { opacity: 0, x: 0, y: -20 }, // 离开状态：稍微上移且透明
 	};
 
 	return (
 		<AnimatePresence
-			mode="wait" // Wait for the exiting page to finish animating before starting the entering page
-			initial={false} // Don't run enter animation on initial load
-			onExitComplete={() => window.scrollTo(0, 0)} // Scroll to top after exit animation
+			mode="wait" // 等待前一个页面动画结束再进入新页面
+			initial={false} // 首次加载时不执行进入动画
 		>
-			{/* Use router.route as key for AnimatePresence to detect page changes */}
+			{/* 使用 router.route 作为 key，确保页面切换时动画生效 */}
 			<motion.div
 				key={router.route}
-				variants={variants} // Apply the animation variants
-				initial="hidden" // Initial state
-				animate="enter" // Animation state
-				exit="exit" // Exit state
-				transition={{ type: "linear", duration: 0.3 }} // Adjust timing/easing as needed
+				variants={variants} // 应用动画状态
+				initial="hidden" // 初始动画状态
+				animate="enter" // 进入动画状态
+				exit="exit" // 离开动画状态
+				transition={{ type: "linear", duration: 0.3 }} // 动画过渡类型和时长
 			>
 				<Component {...pageProps} />
 			</motion.div>
