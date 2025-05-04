@@ -34,7 +34,7 @@ def get_image_files(directory):
 import re
 from datetime import datetime
 # filepath: /home/ebit/ebotian_blog/scripts/ocr.py
-def save_result_to_md(img_path, ocr_result):
+def save_result_to_md(img_path, ocr_result, output_dir=None):
     # 提取图片名中的数字作为页码
     img_name = os.path.basename(img_path)
     match = re.search(r'_(\d+)\.', img_name)
@@ -43,7 +43,12 @@ def save_result_to_md(img_path, ocr_result):
     else:
         page_num = "未知"
     md_name = f"第六本-{int(page_num):02d}页.md"
-    md_path = os.path.join(os.path.dirname(img_path), md_name)
+    # 保存到指定文件夹
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+        md_path = os.path.join(output_dir, md_name)
+    else:
+        md_path = os.path.join(os.path.dirname(img_path), md_name)
     # 提取图片名中的日期
     date_match = re.search(r'(\d{4}-\d{2}-\d{2})', img_name)
     if date_match:
@@ -52,7 +57,6 @@ def save_result_to_md(img_path, ocr_result):
         date_str = datetime.now().strftime("%Y-%m-%d")
     lines = []
     lines.append(f"---\ndate: {date_str}\n---\n\n")
-    #lines.append(f"{int(datetime.now().timestamp())}\n")
     if "words_result" in ocr_result:
         for item in ocr_result["words_result"]:
             lines.append(item.get("words", "") + "\n")
@@ -61,20 +65,22 @@ def save_result_to_md(img_path, ocr_result):
     with open(md_path, "w", encoding="utf-8") as f:
         f.writelines(lines)
 
-def main(img_dir):
+def main(img_dir, output_dir=None):
     access_token = get_access_token()
     image_files = list(get_image_files(img_dir))
     for img_path in tqdm(image_files, desc="OCR Processing"):
         try:
             result = ocr_image(img_path, access_token)
-            save_result_to_md(img_path, result)
+            save_result_to_md(img_path, result, output_dir)
         except Exception as e:
-            save_result_to_md(img_path, {"error": str(e)})
+            save_result_to_md(img_path, {"error": str(e)}, output_dir)
     print("OCR完成，结果已保存为对应图片名的md文件。")
 
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
-        print("用法: python ocr.py <图片目录>")
-    else:
+        print("用法: python ocr.py <图片目录> [输出md目录]")
+    elif len(sys.argv) == 2:
         main(sys.argv[1])
+    else:
+        main(sys.argv[1], sys.argv[2])
