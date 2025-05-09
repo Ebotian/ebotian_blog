@@ -48,22 +48,24 @@ export default function ArticleList({ posts }) {
 						{separator}
 						<Link href={`/${post.slug}`}>
 							<Card>
-								<div className="flex flex-col md:flex-row md:items-center justify-between">
-									<div>
-										<h2 className="text-xl font-bold mb-1 dos-title">
+								<div>
+									<div className="flex justify-between items-center w-full mb-1">
+										<h2 className="text-xl font-bold dos-title">
 											{post.title}
 										</h2>
-										{/* 字数显示区域：在标题下方 */}
 										{typeof post.wordCount === "number" && (
-											<div className="text-xs text-blue-200/80 mb-1 text-right w-full pr-2">
+											<span className="text-xs text-blue-200/80 whitespace-nowrap">
 												字数：{post.wordCount}
-											</div>
+											</span>
 										)}
-										<p className="text-sm text-green-300 mb-2">{post.date}</p>
-										<p className="text-base text-green-200 line-clamp-2">
-											{post.excerpt}
-										</p>
 									</div>
+									<p className="text-sm text-green-300 mb-2">
+										{/* 只显示年月日，去除T和Z后的内容 */}
+										{post.date ? post.date.split("T")[0] : ""}
+									</p>
+									<p className="text-base text-green-200 line-clamp-2">
+										{post.excerpt}
+									</p>
 								</div>
 							</Card>
 						</Link>

@@ -4,34 +4,60 @@
 
 /* 复古未来80s DOS风格全局样式 */
 body {
-	@apply bg-black text-green-400 font-mono;
+  @apply bg-black text-green-400 font-mono;
 }
 
 .dos-title {
-	@apply font-mono tracking-widest text-green-300;
-	text-shadow: 0 0 2px #00ff00, 0 0 8px #00ff00;
+  @apply font-mono tracking-widest text-green-300;
+  text-shadow: 0 0 2px #00ff00, 0 0 8px #00ff00;
 }
 
 .dos-card,
 .dos-card-profile {
-	@apply border-2 border-green-400 bg-gray-900 rounded-lg shadow-lg;
+  @apply border-2 border-green-400 bg-gray-900 rounded-lg shadow-lg;
 }
 
 .dos-input {
-	@apply bg-black border-green-400 text-green-200;
+  @apply bg-black border-green-400 text-green-200;
 }
 
 .dos-footer {
-	@apply border-t border-green-700 bg-black bg-opacity-80;
+  @apply border-t border-green-700 bg-black bg-opacity-80;
 }
 
 .dos-article-content {
-	@apply prose prose-invert max-w-none text-green-100;
+  @apply prose prose-invert max-w-none text-green-100;
 }
 
 /* 响应式优化 */
 @media (max-width: 768px) {
-	.dos-card-profile {
-		@apply w-full;
-	}
+  .dos-card-profile {
+    @apply w-full;
+  }
+}
+
+/* 自定义滚动条timelineNav样式 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background: #222;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #444 #222;
+}
+
+/* 隐藏mikumiku(AsciiCard)的滚动条 */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

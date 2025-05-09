@@ -9,13 +9,13 @@ const formatMonthYear = (monthYearStr) => {
 
 export default function TimelineNav({ months }) {
 	const [activeMonth, setActiveMonth] = useState(null);
-	const navScrollRef = useRef(null); // Ref for the scrollable NAV element
-	const listItemsRef = useRef({}); // Refs for each list item <li> (for centering)
-	const observerTargetsRef = useRef({}); // Refs for H2 elements (for observer)
+	const navScrollRef = useRef(null); // 可滚动导航元素的引用
+	const listItemsRef = useRef({}); // 每个 <li> 元素的引用（用于居中滚动）
+	const observerTargetsRef = useRef({}); // 每个 H2 元素的引用（用于 IntersectionObserver）
 
-	// Effect for Intersection Observer
+	// Intersection Observer 监听月份分隔符
 	useEffect(() => {
-		observerTargetsRef.current = {}; // Clear observer targets on months change
+		observerTargetsRef.current = {}; // 每次 months 变化时清空引用
 
 		const observerCallback = (entries) => {
 			const intersectingEntries = entries.filter(
@@ -23,39 +23,37 @@ export default function TimelineNav({ months }) {
 			);
 
 			if (intersectingEntries.length > 0) {
-				// Sort intersecting entries by their top position (closest to the top edge of the viewport)
+				// 按照距离视口顶部最近排序
 				intersectingEntries.sort(
 					(a, b) => a.boundingClientRect.top - b.boundingClientRect.top
 				);
-				// The first entry is the topmost one currently intersecting the rootMargin zone
+				// 取第一个（最靠上的）作为当前激活月份
 				const bestEntry = intersectingEntries[0];
-				const monthId = bestEntry.target.id.substring(6); // Extract 'YYYY-MM'
+				const monthId = bestEntry.target.id.substring(6); // 提取 'YYYY-MM'
 				setActiveMonth(monthId);
 			}
-			// If nothing is intersecting (e.g., scrolled above the first section),
-			// you might want to clear the active state or set it to the first month.
+			// 如果没有任何元素处于激活区，可以清空激活状态或设置为第一个月份
 			// else {
 			//     setActiveMonth(months.length > 0 ? months[0] : null);
 			// }
 		};
 
 		const observer = new IntersectionObserver(observerCallback, {
-			// Define the "active" zone near the top of the viewport.
-			// -10% from top, -85% from bottom = active zone is between 10% and 15% viewport height from the top.
+			// 定义激活区：距离顶部10%到15%视口高度
 			rootMargin: "-10% 0px -85% 0px",
-			threshold: 0, // Trigger as soon as intersection starts/ends within the zone
+			threshold: 0, // 只要进入激活区就触发
 		});
 
-		// Find and observe all month separator H2 elements
+		// 查找并监听所有月份分隔符 H2 元素
 		months.forEach((month) => {
 			const element = document.getElementById(`month-${month}`);
 			if (element) {
-				observerTargetsRef.current[month] = element; // Store H2 ref for cleanup
+				observerTargetsRef.current[month] = element; // 存储引用
 				observer.observe(element);
 			}
 		});
 
-		// Cleanup function
+		// 清理函数
 		return () => {
 			months.forEach((month) => {
 				const element = observerTargetsRef.current[month];
@@ -64,20 +62,19 @@ export default function TimelineNav({ months }) {
 				}
 			});
 			observer.disconnect();
-			observerTargetsRef.current = {}; // Clear refs on cleanup
+			observerTargetsRef.current = {};
 		};
-	}, [months]); // Re-run observer setup if months array changes
+	}, [months]); // months 变化时重新设置 observer
 
-	// Effect to scroll the active item towards the center of the nav
+	// 当 activeMonth 变化时，自动将其滚动到导航栏中间
 	useEffect(() => {
-		// Use listItemsRef here for the LI elements
 		if (
 			activeMonth &&
 			navScrollRef.current &&
 			listItemsRef.current[activeMonth]
 		) {
 			const navElement = navScrollRef.current;
-			const activeListItemElement = listItemsRef.current[activeMonth]; // Get the LI element ref
+			const activeListItemElement = listItemsRef.current[activeMonth];
 
 			const navRect = navElement.getBoundingClientRect();
 			const itemRect = activeListItemElement.getBoundingClientRect();
@@ -93,7 +90,7 @@ export default function TimelineNav({ months }) {
 				behavior: "smooth",
 			});
 		}
-	}, [activeMonth]); // Run when activeMonth changes
+	}, [activeMonth]);
 
 	if (!months || months.length === 0) {
 		return null;
@@ -101,8 +98,9 @@ export default function TimelineNav({ months }) {
 
 	return (
 		<nav
-			ref={navScrollRef} // Ref for scrolling the nav itself
-			className="sticky top-20 max-h-[calc(100vh-10rem)] overflow-y-auto hidden lg:block w-40 flex-shrink-0 ml-8 pr-4"
+			ref={navScrollRef}
+			className="sticky top-20 max-h-[calc(100vh-10rem)] overflow-y-auto hidden lg:block w-40 flex-shrink-0 ml-8 pr-4 custom-scrollbar"
+			// 增加自定义滚动条样式类
 		>
 			<h3 className="text-lg font-semibold text-blue-200 mb-4 pl-4 sticky top-0 bg-black z-10 pt-1">
 				时间轴
@@ -113,7 +111,6 @@ export default function TimelineNav({ months }) {
 					return (
 						<li
 							key={month}
-							// Store ref to the LI element for the centering effect
 							ref={(el) => (listItemsRef.current[month] = el)}
 							className="relative mb-3 pl-6"
 						>
@@ -139,6 +136,9 @@ export default function TimelineNav({ months }) {
 					);
 				})}
 			</ul>
+			{/* 滚动条样式由 custom-scrollbar 控制 */}
 		</nav>
 	);
 }
+
+// 建议在全局 CSS 或组件 CSS 文件中添加如下滚动条样式：

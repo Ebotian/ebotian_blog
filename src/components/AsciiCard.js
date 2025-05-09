@@ -63,7 +63,7 @@ export default function AsciiCard() {
 	return (
 		<div
 			ref={containerRef}
-			className="w-full mt-4 p-2 bg-gray-900 border-2 border-blue-400 rounded-xl shadow-inner overflow-x-auto"
+			className="w-full mt-4 p-2 bg-gray-900 border-2 border-blue-400 rounded-xl shadow-inner overflow-x-auto hide-scrollbar"
 			style={{ whiteSpace: "nowrap" }}
 		>
 			<pre
@@ -76,3 +76,5 @@ export default function AsciiCard() {
 		</div>
 	);
 }
+
+
