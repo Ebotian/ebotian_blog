@@ -2,7 +2,7 @@ import { getAllPostsMeta } from "../lib/posts";
 import RSS from "rss";
 
 export async function getServerSideProps({ res }) {
-  const siteUrl = "https://your-vercel-domain.vercel.app"; // 替换为你的实际域名
+  const siteUrl = "https://ebotian-blog.vercel.app"; // 替换为你的实际域名
   const posts = getAllPostsMeta();
 
   const feed = new RSS({
