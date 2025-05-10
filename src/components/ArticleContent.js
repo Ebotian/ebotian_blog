@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import Card from "./Card";
-import mermaid from "mermaid";
 
 export default function ArticleContent({ title, date, contentHtml }) {
 	const articleRef = useRef(null); // Keep ref for article container if needed for other things

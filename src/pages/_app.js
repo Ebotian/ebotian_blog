@@ -1,3 +1,5 @@
+// filepath: /home/ebit/ebotian_blog/src/pages/_app.js
+import "highlight.js/styles/atom-one-dark.css"; // <--- 添加这行来引入 highlight.js 主题
 import "../styles/globals.css"; // 引入全局样式
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";

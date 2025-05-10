@@ -18,9 +18,23 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 	const post = getPostBySlug(params.slug);
 	const contentHtml = await markdownToHtml(post.content || "");
+	// // --- 调试代码开始 ---
+	// console.log("--- DEBUG: Generated contentHtml ---");
+	// // 为了更容易找到代码块，可以只打印包含 <pre> 或 <code> 的部分
+	// // 如果内容很多，可以考虑截取或只在特定文章slug下打印
+	// if (contentHtml.includes("<pre") || contentHtml.includes("<code")) {
+	// 	console.log(contentHtml);
+	// } else {
+	// 	console.log("No <pre> or <code> tags found in contentHtml for this post.");
+	// }
+	// console.log("--- DEBUG: End of contentHtml ---");
+	// // --- 调试代码结束 ---
 	const allPosts = getAllPostsMeta();
 	// 计算所有文章的总字数（以中文字符计）
-	const totalWordCount = allPosts.reduce((sum, p) => sum + (p.wordCount || 0), 0);
+	const totalWordCount = allPosts.reduce(
+		(sum, p) => sum + (p.wordCount || 0),
+		0
+	);
 	return {
 		props: {
 			post: { ...post, contentHtml },
@@ -62,22 +76,34 @@ export default function PostPage({ post, allPosts, totalWordCount }) {
 		<div className="relative min-h-screen bg-black text-green-400 font-mono">
 			{/* Profile for MD screens ONLY (Tablet/Small Desktop) - Fixed Left */}
 			{!displayMode.isMobile && !displayMode.isLargeScreen && (
-				<div className={`fixed left-4 top-1/2 -translate-y-1/2 z-20 ${profileWidthClass}`}>
-					<Profile compact={displayMode.useCompactProfile} totalWordCount={totalWordCount} />
+				<div
+					className={`fixed left-4 top-1/2 -translate-y-1/2 z-20 ${profileWidthClass}`}
+				>
+					<Profile
+						compact={displayMode.useCompactProfile}
+						totalWordCount={totalWordCount}
+					/>
 				</div>
 			)}
-			<div className={`pt-8 pb-20 px-4 sm:px-8 ${
-				!displayMode.isMobile && !displayMode.isLargeScreen
-					? displayMode.useCompactProfile
-						? "md:pl-56"
-						: "md:pl-64"
-					: ""
-			}`}>
+			<div
+				className={`pt-8 pb-20 px-4 sm:px-8 ${
+					!displayMode.isMobile && !displayMode.isLargeScreen
+						? displayMode.useCompactProfile
+							? "md:pl-56"
+							: "md:pl-64"
+						: ""
+				}`}
+			>
 				<div className="max-w-7xl mx-auto">
 					<div className="lg:flex lg:justify-center lg:gap-8">
-						<aside className={`hidden lg:block ${profileWidthClass} flex-shrink-0`}>
+						<aside
+							className={`hidden lg:block ${profileWidthClass} flex-shrink-0`}
+						>
 							<div className="sticky top-20 h-fit">
-								<Profile compact={displayMode.useCompactProfile} totalWordCount={totalWordCount} />
+								<Profile
+									compact={displayMode.useCompactProfile}
+									totalWordCount={totalWordCount}
+								/>
 							</div>
 						</aside>
 						<div className="w-full max-w-2xl flex-shrink min-w-0 mx-auto lg:mx-0">
