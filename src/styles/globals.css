@@ -9,7 +9,7 @@ body {
 
 .dos-title {
   @apply font-mono tracking-widest text-green-300;
-  text-shadow: 0 0 2px #00ff00, 0 0 8px #00ff00;
+  /* 移除 text-shadow 光晕效果 */
 }
 
 .dos-card,
