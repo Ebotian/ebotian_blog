@@ -6,7 +6,7 @@ import Profile from "../components/Profile";
 import Footer from "../components/Footer";
 import { getAllPostsMeta } from "../lib/posts";
 import TimelineNav from "../components/TimelineNav";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 export async function getStaticProps() {
 	const posts = await getAllPostsMeta();
@@ -25,8 +25,7 @@ export async function getStaticProps() {
 }
 
 // Receive totalWordCount from getStaticProps
-export default function Home({ posts, totalWordCount }) {
-	const [searchResults, setSearchResults] = useState(posts);
+export default function Home({ posts, totalWordCount, showAllOverride }) {
 	const [displayMode, setDisplayMode] = useState({
 		isMobile: false,
 		useCompactProfile: false,
@@ -34,6 +33,24 @@ export default function Home({ posts, totalWordCount }) {
 	});
 	const router = useRouter(); // Get router instance
 	const scrollPosRef = useRef(0); // Ref to store scroll position before navigating away
+
+	// 判断是否在 /coco 路径（客户端判断，不影响静态路由）
+	const [showAll, setShowAll] = useState(!!showAllOverride);
+	useEffect(() => {
+		if (typeof window !== "undefined" && !showAllOverride) {
+			setShowAll(window.location.pathname === "/coco");
+		}
+	}, [showAllOverride]);
+
+	// 只展示 2024 年及以后的 posts，除非在 /coco 或 showAllOverride
+	const visiblePosts = showAll
+		? posts
+		: posts.filter((post) => {
+				const year = post.date?.slice(0, 4);
+				return year && parseInt(year, 10) >= 2024;
+		  });
+
+	const [searchResults, setSearchResults] = useState(visiblePosts);
 
 	// --- Start: Scroll Restoration Logic ---
 	useEffect(() => {
@@ -103,6 +120,7 @@ export default function Home({ posts, totalWordCount }) {
 	}, []);
 	// --- End: Responsive Logic ---
 
+	// 修改 handleSearch 逻辑，确保只搜索可见 posts
 	const handleSearch = (results) => {
 		results.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
 		setSearchResults(results);
@@ -173,8 +191,8 @@ export default function Home({ posts, totalWordCount }) {
 							)}
 							{/* Search Bar */}
 							<div className="w-full mb-6">
-								{/* Pass original posts to SearchBar */}
-								<SearchBar posts={posts} onSearch={handleSearch} />
+								{/* Pass visible posts to SearchBar */}
+								<SearchBar posts={visiblePosts} onSearch={handleSearch} />
 							</div>
 							{/* Article List */}
 							<main className="w-full">
@@ -185,8 +203,8 @@ export default function Home({ posts, totalWordCount }) {
 							<footer className="w-full mt-12">
 								<Footer />
 							</footer>
-            </div>
-            <Analytics />
+						</div>
+						<Analytics />
 
 						{/* Right Column: Timeline */}
 						<aside className="hidden lg:block flex-shrink-0">
