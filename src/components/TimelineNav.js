@@ -97,59 +97,59 @@ export default function TimelineNav({ months }) {
 	}
 
 	return (
-		<nav
-			ref={navScrollRef}
-			className="sticky top-20 max-h-[calc(100vh-10rem)] overflow-y-auto hidden lg:block w-40 flex-shrink-0 ml-8 pr-4 custom-scrollbar"
-			// 增加自定义滚动条样式类
-		>
-			<h3
-				className="text-lg font-semibold mb-4 pl-4 sticky top-0 z-10 pt-1"
-				style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}
+		<nav className="sticky top-20 hidden lg:block w-40 flex-shrink-0 ml-8 pr-4">
+			{/* 可滚动的时间轴容器：移动 max-height 与 overflow 到内部 div，使按钮不属于滚动区域 */}
+			<div
+				ref={navScrollRef}
+				className="max-h-[calc(100vh-10rem)] overflow-y-auto custom-scrollbar"
 			>
-				时间轴
-			</h3>
-			<ul
-				className="relative border-l-2 ml-4 mt-2"
-				style={{ borderColor: "rgba(4,120,87,0.6)" }}
-			>
-				{months.map((month) => {
-					const isActive = month === activeMonth;
-					return (
-						<li
-							key={month}
-							ref={(el) => (listItemsRef.current[month] = el)}
-							className="relative mb-3 pl-6"
-						>
-							<span
-								className="absolute -left-[calc(0.375rem+1px)] top-1 w-3 h-3 rounded-full border-2 transition-all duration-200"
-								style={{
-									transformOrigin: "center",
-									backgroundColor: isActive
-										? "rgba(59,130,246,0.7)"
-										: "rgba(4,120,87,0.9)",
-									borderColor: isActive
-										? "rgba(219,234,254,0.9)"
-										: "rgba(34,197,94,0.6)",
-									transform: isActive ? "scale(1.1)" : "scale(1)",
-								}}
-							></span>
-							<a
-								href={`#month-${month}`}
-								className={`block text-sm ${
-									isActive ? "font-bold" : ""
-								} transition-colors duration-200`}
-								style={{ color: "var(--text)", opacity: isActive ? 1 : 0.72 }}
+				<h3
+					className="text-lg font-semibold mb-4 pl-4 sticky top-0 z-10 pt-1"
+					style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}
+				>
+					时间轴
+				</h3>
+				<ul
+					className="relative border-l-2 ml-4 mt-2"
+					style={{ borderColor: "rgba(4,120,87,0.6)" }}
+				>
+					{months.map((month) => {
+						const isActive = month === activeMonth;
+						return (
+							<li
+								key={month}
+								ref={(el) => (listItemsRef.current[month] = el)}
+								className="relative mb-3 pl-6"
 							>
-								{formatMonthYear(month)}
-							</a>
-						</li>
-					);
-				})}
-			</ul>
-			{/* 滚动条样式由 custom-scrollbar 控制 */}
+								<span
+									className="absolute -left-[calc(0.375rem+1px)] top-1 w-3 h-3 rounded-full border-2 transition-all duration-200"
+									style={{
+										transformOrigin: "center",
+										backgroundColor: isActive
+											? "rgba(59,130,246,0.7)"
+											: "rgba(4,120,87,0.9)",
+										borderColor: isActive
+											? "rgba(219,234,254,0.9)"
+											: "rgba(34,197,94,0.6)",
+										transform: isActive ? "scale(1.1)" : "scale(1)",
+									}}
+								></span>
+								<a
+									href={`#month-${month}`}
+									className={`block text-sm ${
+										isActive ? "font-bold" : ""
+									} transition-colors duration-200`}
+									style={{ color: "var(--text)", opacity: isActive ? 1 : 0.72 }}
+								>
+									{formatMonthYear(month)}
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 
-			{/* 与时间轴出现逻辑一致：仅在较大屏幕显示（nav 本身已使用 hidden lg:block）
-			   下面添加一个主题感知的“一键回到顶部”按钮，颜色随主题变量变化 */}
+			{/* 按钮放在可滚动区域之外，始终可见 */}
 			<div className="mt-4 pl-4 pr-4">
 				<button
 					className="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-md border-2 transition-colors"
