@@ -1,6 +1,5 @@
-// filepath: /home/ebit/ebotian_blog/src/pages/_app.js
-import "highlight.js/styles/atom-one-dark.css"; // <--- 添加这行来引入 highlight.js 主题
 import "../styles/globals.css"; // 引入全局样式
+import HighlightThemeLoader from "../components/HighlightThemeLoader";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -28,6 +27,8 @@ function MyApp({ Component, pageProps }) {
 				exit="exit" // 离开动画状态
 				transition={{ type: "linear", duration: 0.3 }} // 动画过渡类型和时长
 			>
+				{/* 管理 highlight.js 的主题样式（根据 html[data-theme] 切换 GitHub 风格主题） */}
+				<HighlightThemeLoader />
 				<Component {...pageProps} />
 			</motion.div>
 		</AnimatePresence>

@@ -82,9 +82,8 @@ html[data-theme="dark"] [class^="bg-black"] {
 .dos-card small,
 .dos-card label,
 .dos-card input,
-.dos-card button,
-.dos-card pre {
-  color: inherit !important;
+.dos-card button {
+  color: inherit;
 }
 
 .dos-card svg {
@@ -111,6 +110,60 @@ html[data-theme="dark"] [class^="bg-black"] {
 
 .dos-article-content {
   color: var(--text);
+}
+
+/* Inline code and code block styling that follows the current theme variables */
+.dos-article-content code:not(.hljs) {
+  /* Only apply the site inline-code styling to code elements that are NOT
+     highlighted by highlight.js. When highlight.js is used it will add the
+     .hljs class and provide appropriate colors from the theme CSS. */
+  color: var(--text);
+  background-color: var(--muted);
+  padding: 0.08rem 0.28rem;
+  border-radius: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  font-size: 0.95em;
+}
+
+.dos-article-content pre {
+  /* Pre blocks receive a card-like background but we intentionally do NOT
+     set a fixed text color here so that highlight.js theme CSS can control
+     the code colors inside the block. */
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow: auto;
+}
+
+/* 在亮模式下，让块级代码（fenced code / pre）使用淡灰色背景，便于与页面其它部分区分
+   （这是“行间代码块”意思：即不是 inline code，而是独立的 pre/code 区块）。 */
+html[data-theme="light"] .dos-article-content pre {
+  background-color: #656a74;
+  /* Tailwind gray-100 / 淡灰 */
+}
+html[data-theme="dark"] .dos-article-content pre {
+  background-color: #27292d;
+  /* Tailwind gray-100 / 淡灰 */
+}
+.dos-article-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  display: block;
+  white-space: pre;
+}
+
+/* Allow highlight.js styles to apply inside article content */
+.dos-article-content .hljs {
+  /* Allow highlight.js theme to set colors. We keep background transparent so
+     the pre/code background shows through, but we don't force the text color. */
+  background: transparent !important;
+}
+
+.dos-article-content code.hljs {
+  padding: 0.08rem 0.28rem;
+  border-radius: 0.25rem;
 }
 
 @media (max-width: 768px) {

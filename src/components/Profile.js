@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import AsciiCard from "./AsciiCard";
 
 function formatCount(count) {
@@ -14,6 +15,7 @@ export default function Profile({ compact = false, totalWordCount }) {
 	const DARK_BG = "#000000"; // black (matches current site background)
 
 	const [isLight, setIsLight] = useState(false);
+	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
@@ -21,6 +23,7 @@ export default function Profile({ compact = false, totalWordCount }) {
 		const initial = saved === "light" ? "light" : "dark";
 		document.documentElement.setAttribute("data-theme", initial);
 		setIsLight(initial === "light");
+		setMounted(true);
 		// Ensure a transition on theme change for background
 		document.documentElement.style.transition = "background-color 220ms ease";
 	}, []);
@@ -58,6 +61,24 @@ export default function Profile({ compact = false, totalWordCount }) {
 				<h2 className="text-lg font-bold mt-1 mb-1 text-center">Ebit</h2>
 				<p className="text-sm mb-2 text-center">求工作...</p>
 				<div className="flex justify-center space-x-3 mt-auto pt-2">
+					<Link
+						href="/friends"
+						title="友链"
+						className="hover:text-opacity-80 transition-colors"
+					>
+						{/* friends / links icon */}
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							className="w-6 h-6"
+						>
+							<path d="M16 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM8 11c1.657 0 3-1.343 3-3S9.657 5 8 5 5 6.343 5 8s1.343 3 3 3zM2 21c0-2.761 2.239-5 5-5h10c2.761 0 5 2.239 5 5v1H2v-1z" />
+						</svg>
+					</Link>
+
 					<a
 						href="mailto:yiboxiaotian@nuaa.edu.cn"
 						title="邮箱"
@@ -139,95 +160,104 @@ export default function Profile({ compact = false, totalWordCount }) {
 					className="flex items-center space-x-2 px-3 py-1 rounded-full border-2 border-blue-400 hover:bg-opacity-30 transition-colors"
 					style={{ backgroundColor: "rgba(0,0,0,0.08)" }}
 				>
-					{/* Icon: sun for light, moon for dark */}
-					{isLight ? (
-						<svg
-							className="w-5 h-5"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M12 4.5V3"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M12 21v-1.5"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M4.5 12H3"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M21 12h-1.5"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M5.636 5.636L4.222 4.222"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M19.778 19.778L18.364 18.364"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M19.778 4.222L18.364 5.636"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M5.636 18.364L4.222 19.778"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<circle
-								cx="12"
-								cy="12"
-								r="3"
-								stroke="currentColor"
-								strokeWidth="1.5"
-							/>
-						</svg>
+					{/* Icon: sun for light, moon for dark - only render after mount to avoid SSR mismatch */}
+					{mounted ? (
+						isLight ? (
+							/* Sun icon */
+							<svg
+								className="w-5 h-5"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M12 4.5V3"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M12 21v-1.5"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M4.5 12H3"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M21 12h-1.5"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M5.636 5.636L4.222 4.222"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M19.778 19.778L18.364 18.364"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M19.778 4.222L18.364 5.636"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M5.636 18.364L4.222 19.778"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<circle
+									cx="12"
+									cy="12"
+									r="3"
+									stroke="currentColor"
+									strokeWidth="1.5"
+								/>
+							</svg>
+						) : (
+							/* Moon icon */
+							<svg
+								className="w-5 h-5"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+							</svg>
+						)
 					) : (
-						<svg
-							className="w-5 h-5"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-						</svg>
+						/* placeholder to keep DOM shape stable during hydration */
+						<svg className="w-5 h-5 opacity-0" viewBox="0 0 24 24" />
 					)}
-					<span className="text-xs">{isLight ? "亮主题" : "暗主题"}</span>
+					<span className="text-xs">
+						{mounted ? (isLight ? "亮主题" : "暗主题") : ""}
+					</span>
 				</button>
 			</div>
 		</div>
