@@ -187,4 +187,39 @@ export default function TimelineNav({ months }) {
 	);
 }
 
+// 移动端固定悬浮的回到顶部按钮：小巧圆形，仅在小屏显示
+export function MobileBackToTop() {
+	return (
+		<button
+			className="lg:hidden fixed bottom-6 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-md"
+			aria-label="回到顶部"
+			title="回到顶部"
+			style={{
+				backgroundColor: "var(--card-bg)",
+				color: "var(--card-text)",
+				border: "1px solid rgba(34,197,94,0.25)",
+				backdropFilter: "blur(4px)",
+			}}
+			onClick={() => {
+				if (typeof window !== "undefined") {
+					window.scrollTo({ top: 0, behavior: "smooth" });
+				}
+			}}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				className="w-5 h-5"
+			>
+				<polyline points="18 15 12 9 6 15"></polyline>
+			</svg>
+		</button>
+	);
+}
+
 // 建议在全局 CSS 或组件 CSS 文件中添加如下滚动条样式：

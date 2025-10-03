@@ -1,5 +1,6 @@
 import "../styles/globals.css"; // 引入全局样式
 import HighlightThemeLoader from "../components/HighlightThemeLoader";
+import { MobileBackToTop } from "../components/TimelineNav";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }) {
 			>
 				{/* 管理 highlight.js 的主题样式（根据 html[data-theme] 切换 GitHub 风格主题） */}
 				<HighlightThemeLoader />
+				<MobileBackToTop />
 				<Component {...pageProps} />
 			</motion.div>
 		</AnimatePresence>

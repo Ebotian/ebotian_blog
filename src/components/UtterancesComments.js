@@ -102,7 +102,7 @@ const UtterancesComments = ({ theme = "github-dark" }) => {
 				container.innerHTML = "";
 			} catch (e) {}
 		};
-	}, [utterancesTheme, router.asPath]); // 当主题 (data-theme) 或路由变化时重载评论
+	}, [utterancesTheme, router.asPath, theme]); // 当主题 (data-theme) 或路由或 prop theme 变化时重载评论
 
 	return <div ref={containerRef} className="utterances-container" />;
 };
