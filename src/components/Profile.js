@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import AsciiCard from "./AsciiCard";
 
 function formatCount(count) {
@@ -16,6 +17,7 @@ export default function Profile({ compact = false, totalWordCount }) {
 
 	const [isLight, setIsLight] = useState(false);
 	const [mounted, setMounted] = useState(false);
+	const router = useRouter();
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
@@ -54,12 +56,20 @@ export default function Profile({ compact = false, totalWordCount }) {
 				alt="avatar"
 				className={`${
 					compact ? "w-16 h-16 mb-3" : "w-28 h-28 mb-2"
-				} rounded-full border-4 border-blue-300`}
+				} rounded-full border-4 border-blue-300 cursor-pointer hover:opacity-90 transition-opacity`}
 				draggable="false"
+				role="button"
+				aria-label="返回上一页"
+				onClick={() => {
+					// use Next.js router.back() to navigate to previous page
+					if (typeof window !== "undefined") {
+						router.back();
+					}
+				}}
 			/>
 			<div className="flex flex-col items-center w-full">
 				<h2 className="text-lg font-bold mt-1 mb-1 text-center">Ebit</h2>
-				<p className="text-sm mb-2 text-center">求工作...</p>
+				<p className="text-sm mb-2 text-center">...求工作...</p>
 				<div className="flex justify-center space-x-3 mt-auto pt-2">
 					<Link
 						href="/friends"

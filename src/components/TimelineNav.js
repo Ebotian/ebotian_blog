@@ -147,6 +147,42 @@ export default function TimelineNav({ months }) {
 				})}
 			</ul>
 			{/* 滚动条样式由 custom-scrollbar 控制 */}
+
+			{/* 与时间轴出现逻辑一致：仅在较大屏幕显示（nav 本身已使用 hidden lg:block）
+			   下面添加一个主题感知的“一键回到顶部”按钮，颜色随主题变量变化 */}
+			<div className="mt-4 pl-4 pr-4">
+				<button
+					className="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-md border-2 transition-colors"
+					title="回到顶部"
+					aria-label="回到顶部"
+					style={{
+						backgroundColor: "var(--card-bg)",
+						color: "var(--card-text)",
+						borderColor: "rgba(34,197,94,0.6)",
+					}}
+					onClick={() => {
+						if (typeof window !== "undefined") {
+							window.scrollTo({ top: 0, behavior: "smooth" });
+						}
+					}}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						className="w-4 h-4"
+					>
+						<polyline points="18 15 12 9 6 15"></polyline>
+					</svg>
+					<span className="text-sm">回到顶部</span>
+				</button>
+			</div>
 		</nav>
 	);
 }
