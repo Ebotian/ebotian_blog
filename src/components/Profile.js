@@ -29,9 +29,7 @@ export default function Profile({ compact = false, totalWordCount }) {
 					Ebit
 				</h2>
 				<p className="text-sm text-blue-100 mb-2 text-center">
-					编程爱好者
-					{!compact && <br />}
-					欢迎交流！
+					求工作...
 				</p>
 				<div className="flex justify-center space-x-3 mt-auto pt-2">
 					<a
