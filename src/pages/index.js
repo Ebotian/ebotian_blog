@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router"; // Import useRouter
 import ArticleList from "../components/ArticleList";
 import SearchBar from "../components/SearchBar";
+import Skills from "../components/Skills";
 import Profile from "../components/Profile";
 import Footer from "../components/Footer";
 import { getAllPostsMeta } from "../lib/posts";
@@ -193,6 +194,10 @@ export default function Home({ posts, totalWordCount, showAllOverride }) {
 							<div className="w-full mb-6">
 								{/* Pass visible posts to SearchBar */}
 								<SearchBar posts={visiblePosts} onSearch={handleSearch} />
+							</div>
+							{/* Skills: only show on homepage (this file is the homepage) */}
+							<div className="w-full mb-6">
+								<Skills />
 							</div>
 							{/* Article List */}
 							<main className="w-full">
