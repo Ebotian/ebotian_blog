@@ -2,32 +2,33 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
+// Map your site's data-theme value to an utterances theme name
+const mapDataThemeToUtterances = (dataTheme, fallback = "github-dark") => {
+	if (!dataTheme) return fallback;
+	const t = String(dataTheme).toLowerCase();
+	if (t === "light") return "github-light";
+	if (t === "dark") return "github-dark";
+	// default fallback
+	return fallback;
+};
+
 const UtterancesComments = ({ theme = "github-dark" }) => {
 	const containerRef = useRef(null);
 	const router = useRouter();
 	const [utterancesTheme, setUtterancesTheme] = useState(theme);
-
-	// Map your site's data-theme value to an utterances theme name
-	const mapDataThemeToUtterances = (dataTheme) => {
-		if (!dataTheme) return theme;
-		const t = String(dataTheme).toLowerCase();
-		if (t === "light") return "github-light";
-		// add more mappings here if you use other theme names
-		return "github-dark";
-	};
 
 	// Observe <html data-theme=...> changes and update utterancesTheme accordingly
 	useEffect(() => {
 		if (typeof document === "undefined") return;
 		try {
 			const current = document.documentElement.getAttribute("data-theme");
-			setUtterancesTheme(mapDataThemeToUtterances(current));
+			setUtterancesTheme(mapDataThemeToUtterances(current, theme));
 
 			const obs = new MutationObserver((records) => {
 				for (const r of records) {
 					if (r.type === "attributes" && r.attributeName === "data-theme") {
 						const val = document.documentElement.getAttribute("data-theme");
-						setUtterancesTheme(mapDataThemeToUtterances(val));
+						setUtterancesTheme(mapDataThemeToUtterances(val, theme));
 						break;
 					}
 				}
@@ -41,7 +42,7 @@ const UtterancesComments = ({ theme = "github-dark" }) => {
 		} catch (e) {
 			// ignore observer errors in very locked-down environments
 		}
-	}, []);
+	}, [theme]);
 
 	useEffect(() => {
 		const container = containerRef.current;
