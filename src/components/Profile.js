@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AsciiCard from "./AsciiCard";
 
 function formatCount(count) {
@@ -10,9 +10,39 @@ function formatCount(count) {
 }
 
 export default function Profile({ compact = false, totalWordCount }) {
+	const LIGHT_BG = "#FBF3D9"; // soft cream / pale yellow
+	const DARK_BG = "#000000"; // black (matches current site background)
+
+	const [isLight, setIsLight] = useState(false);
+
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const saved = window.localStorage.getItem("ebotian_bg_mode");
+		const initial = saved === "light" ? "light" : "dark";
+		document.documentElement.setAttribute("data-theme", initial);
+		setIsLight(initial === "light");
+		// Ensure a transition on theme change for background
+		document.documentElement.style.transition = "background-color 220ms ease";
+	}, []);
+
+	function applyThemeAttribute(mode) {
+		// Set data-theme on <html> so CSS variables handle the rest
+		if (typeof document !== "undefined") {
+			document.documentElement.setAttribute("data-theme", mode);
+		}
+	}
+
+	function toggleTheme() {
+		const next = !isLight;
+		setIsLight(next);
+		const mode = next ? "light" : "dark";
+		applyThemeAttribute(mode);
+		window.localStorage.setItem("ebotian_bg_mode", mode);
+	}
+
 	return (
 		<div
-			className={`flex flex-col items-center bg-gray-800 bg-opacity-90 border-2 border-blue-400 rounded-xl shadow-xl dos-card-profile ${
+			className={`flex flex-col items-center border-2 border-blue-400 rounded-xl dos-card-profile ${
 				compact ? "w-full p-3" : "w-56 p-4"
 			}`}
 		>
@@ -21,23 +51,19 @@ export default function Profile({ compact = false, totalWordCount }) {
 				alt="avatar"
 				className={`${
 					compact ? "w-16 h-16 mb-3" : "w-28 h-28 mb-2"
-				} rounded-full border-4 border-blue-300 shadow-md`}
+				} rounded-full border-4 border-blue-300`}
 				draggable="false"
 			/>
 			<div className="flex flex-col items-center w-full">
-				<h2 className="text-lg font-bold text-blue-200 mt-1 mb-1 text-center">
-					Ebit
-				</h2>
-				<p className="text-sm text-blue-100 mb-2 text-center">
-					求工作...
-				</p>
+				<h2 className="text-lg font-bold mt-1 mb-1 text-center">Ebit</h2>
+				<p className="text-sm mb-2 text-center">求工作...</p>
 				<div className="flex justify-center space-x-3 mt-auto pt-2">
 					<a
 						href="mailto:yiboxiaotian@nuaa.edu.cn"
 						title="邮箱"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-blue-100 hover:text-blue-300 transition-colors"
+						className="hover:text-opacity-80 transition-colors"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +86,7 @@ export default function Profile({ compact = false, totalWordCount }) {
 						title="GitHub"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-blue-100 hover:text-blue-300 transition-colors"
+						className="hover:text-opacity-80 transition-colors"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +104,7 @@ export default function Profile({ compact = false, totalWordCount }) {
 						title="X(Twitter)"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-blue-100 hover:text-blue-300 transition-colors"
+						className="hover:text-opacity-80 transition-colors"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -94,12 +120,115 @@ export default function Profile({ compact = false, totalWordCount }) {
 				</div>
 				{/* 总字数显示在底部 */}
 				{typeof totalWordCount === "number" && (
-					<p className="text-xs text-blue-200/80 mt-3 text-center">
+					<p
+						className="text-xs mt-3 text-center"
+						style={{ color: "var(--card-text)" }}
+					>
 						全部文章总字数：{formatCount(totalWordCount)}
 					</p>
 				)}
 				{/* 加入 ASCII 艺术卡片 */}
 				<AsciiCard />
+			</div>
+			{/* Theme toggle button: matches link style but prominent */}
+			<div className="flex justify-center mt-3">
+				<button
+					onClick={toggleTheme}
+					aria-pressed={isLight}
+					title={isLight ? "切换到深色背景" : "切换到米白背景"}
+					className="flex items-center space-x-2 px-3 py-1 rounded-full border-2 border-blue-400 hover:bg-opacity-30 transition-colors"
+					style={{ backgroundColor: "rgba(0,0,0,0.08)" }}
+				>
+					{/* Icon: sun for light, moon for dark */}
+					{isLight ? (
+						<svg
+							className="w-5 h-5"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M12 4.5V3"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M12 21v-1.5"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M4.5 12H3"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M21 12h-1.5"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M5.636 5.636L4.222 4.222"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M19.778 19.778L18.364 18.364"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M19.778 4.222L18.364 5.636"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M5.636 18.364L4.222 19.778"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<circle
+								cx="12"
+								cy="12"
+								r="3"
+								stroke="currentColor"
+								strokeWidth="1.5"
+							/>
+						</svg>
+					) : (
+						<svg
+							className="w-5 h-5"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+					)}
+					<span className="text-xs">{isLight ? "亮主题" : "暗主题"}</span>
+				</button>
 			</div>
 		</div>
 	);

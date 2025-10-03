@@ -145,7 +145,7 @@ export default function Home({ posts, totalWordCount, showAllOverride }) {
 
 	return (
 		// No need for mainRef anymore for this scroll logic
-		<div className="relative min-h-screen bg-black text-green-400 font-mono">
+		<div className="relative min-h-screen">
 			{/* Profile for MD screens ONLY */}
 			{!displayMode.isMobile && !displayMode.isLargeScreen && (
 				<div

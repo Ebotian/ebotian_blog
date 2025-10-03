@@ -2,41 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 复古未来80s DOS风格全局样式 */
-body {
-  @apply bg-black text-green-400 font-mono;
+/* Global theme variables and light/dark variants using data-theme on <html> */
+:root {
+  --bg: #000000;
+  --text: #34d399;
+  --muted: rgba(255, 255, 255, 0.08);
+  --card-bg: #111827;
+  --card-text: #e6f9ef;
 }
 
+html[data-theme="light"] {
+  --bg: #FBF3D9;
+  --text: #111827;
+  --muted: rgba(0, 0, 0, 0.06);
+  --card-bg: #FFF8E7;
+  --card-text: #111827;
+}
+
+html[data-theme="dark"] {
+  --bg: #000000;
+  --text: #34d399;
+  --card-bg: #111827;
+  --card-text: #e6f9ef;
+}
+
+/* Apply page-level background and text color from variables */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+    "Helvetica Neue", monospace;
+}
+
+/* Also ensure html/root uses the same background so large wrappers inherit it */
+html {
+  background-color: var(--bg);
+}
+
+/* Force any elements that still use Tailwind's bg-black utility to follow the theme
+   by overriding their background with the CSS variable. Using !important here
+   ensures utility classes (which may generate inline-like precedence) are
+   overridden when theme changes. */
+html[data-theme="light"] [class*="bg-black"],
+html[data-theme="light"] [class^="bg-black"] {
+  background-color: var(--bg) !important;
+}
+
+html[data-theme="dark"] [class*="bg-black"],
+html[data-theme="dark"] [class^="bg-black"] {
+  background-color: var(--bg) !important;
+}
+
+/* Simple DOS-style title */
 .dos-title {
-  @apply font-mono tracking-widest text-green-300;
-  /* 移除 text-shadow 光晕效果 */
+  font-family: inherit;
+  letter-spacing: 0.15em;
+  color: var(--text);
 }
 
 .dos-card,
 .dos-card-profile {
-  @apply border-2 border-green-400 bg-gray-900 rounded-lg shadow-lg;
+  border: 2px solid rgba(34, 197, 94, 0.55);
+  border-radius: 0.5rem;
+  box-shadow: none;
+  /* removed shadow per request */
+  background-color: var(--card-bg);
+  color: var(--card-text);
+}
+
+/* Ensure common text and icon elements inside cards inherit the card text color */
+.dos-card h1,
+.dos-card h2,
+.dos-card h3,
+.dos-card h4,
+.dos-card h5,
+.dos-card p,
+.dos-card a,
+.dos-card span,
+.dos-card small,
+.dos-card label,
+.dos-card input,
+.dos-card button,
+.dos-card pre {
+  color: inherit !important;
+}
+
+.dos-card svg {
+  color: inherit;
+  fill: currentColor;
+  stroke: currentColor;
 }
 
 .dos-input {
-  @apply bg-black border-green-400 text-green-200;
+  border: 2px solid rgba(34, 197, 94, 0.7);
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
 }
 
 .dos-footer {
-  @apply border-t border-green-700 bg-black bg-opacity-80;
+  border-top: 1px solid rgba(4, 120, 87, 0.6);
+  background-color: rgba(0, 0, 0, 0.45);
+  color: var(--text);
+  padding: 0.75rem 0;
+  text-align: center;
 }
 
 .dos-article-content {
-  @apply prose prose-invert max-w-none text-green-100;
+  color: var(--text);
 }
 
-/* 响应式优化 */
 @media (max-width: 768px) {
   .dos-card-profile {
-    @apply w-full;
+    width: 100%;
   }
 }
 
-/* 自定义滚动条timelineNav样式 */
+/* Custom scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
   background: #222;
@@ -52,7 +135,7 @@ body {
   scrollbar-color: #444 #222;
 }
 
-/* 隐藏mikumiku(AsciiCard)的滚动条 */
+/* Hide AsciiCard scrollbar */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

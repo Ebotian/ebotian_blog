@@ -73,7 +73,7 @@ export default function PostPage({ post, allPosts, totalWordCount }) {
 	const profileWidthClass = displayMode.useCompactProfile ? "w-48" : "w-56";
 
 	return (
-		<div className="relative min-h-screen bg-black text-green-400 font-mono">
+		<div className="relative min-h-screen font-mono">
 			{/* Profile for MD screens ONLY (Tablet/Small Desktop) - Fixed Left */}
 			{!displayMode.isMobile && !displayMode.isLargeScreen && (
 				<div

@@ -63,18 +63,16 @@ export default function AsciiCard() {
 	return (
 		<div
 			ref={containerRef}
-			className="w-full mt-4 p-2 bg-gray-900 border-2 border-blue-400 rounded-xl shadow-inner overflow-x-auto hide-scrollbar"
+			className="w-full mt-4 p-2 border-2 border-blue-400 rounded-xl overflow-x-auto hide-scrollbar dos-card"
 			style={{ whiteSpace: "nowrap" }}
 		>
 			<pre
 				ref={contentRef}
-				className="font-mono text-xs leading-[1.1] text-green-400 whitespace-pre"
-				style={{ minWidth: "max-content" }}
+				className="font-mono text-xs leading-[1.1] whitespace-pre"
+				style={{ minWidth: "max-content", color: "var(--card-text)" }}
 			>
 				{asciiArt}
 			</pre>
 		</div>
 	);
 }
-
-

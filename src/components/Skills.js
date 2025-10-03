@@ -86,7 +86,7 @@ const defaultSkills = [
 	{ key: "linux", name: "Linux", icon: "linux" },
 	{ key: "algorithms", name: "Algorithm", icon: "algorithms" },
 
-  { key: "latex", name: "LaTeX", icon: "latex" },
+	{ key: "latex", name: "LaTeX", icon: "latex" },
 	{ key: "markdown", name: "Markdown", icon: "markdown" },
 	{ key: "office", name: "WPS / Office", icon: "office" },
 ];
@@ -96,22 +96,29 @@ export default function Skills({ skills = defaultSkills }) {
 		<section className="w-full mb-6" aria-label="技能槽">
 			<div className="max-w-2xl mx-auto">
 				<Card>
-					<div className="mb-3 text-sm text-green-300 font-mono">我学会的一些东西:</div>
+					<div className="mb-3 text-sm font-mono">我学会的一些东西:</div>
 					<div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
 						{skills.map((s) => {
 							const IconComp = ICON_MAP[s.icon] || Code;
 							return (
 								<div
 									key={s.key}
-									className="flex flex-col items-center text-center text-xs text-green-200"
+									className="flex flex-col items-center text-center text-xs"
 								>
 									<div
-										className="w-14 h-14 rounded-full bg-green-900/10 flex items-center justify-center transition-transform transform hover:scale-105"
+										className="w-14 h-14 rounded-full flex items-center justify-center transition-transform transform hover:scale-105"
 										aria-hidden
+										style={{ backgroundColor: "rgba(17,24,39,0.04)" }}
 									>
-										<IconComp className="w-7 h-7 text-white" />
+										<IconComp
+											className="w-7 h-7"
+											style={{ color: "var(--card-text)" }}
+										/>
 									</div>
-									<div className="mt-2 leading-tight text-white text-xs">
+									<div
+										className="mt-2 leading-tight text-xs"
+										style={{ color: "var(--card-text)" }}
+									>
 										{s.name}
 									</div>
 								</div>

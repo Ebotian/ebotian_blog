@@ -102,10 +102,16 @@ export default function TimelineNav({ months }) {
 			className="sticky top-20 max-h-[calc(100vh-10rem)] overflow-y-auto hidden lg:block w-40 flex-shrink-0 ml-8 pr-4 custom-scrollbar"
 			// 增加自定义滚动条样式类
 		>
-			<h3 className="text-lg font-semibold text-blue-200 mb-4 pl-4 sticky top-0 bg-black z-10 pt-1">
+			<h3
+				className="text-lg font-semibold mb-4 pl-4 sticky top-0 z-10 pt-1"
+				style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}
+			>
 				时间轴
 			</h3>
-			<ul className="relative border-l-2 border-green-700 ml-4 mt-2">
+			<ul
+				className="relative border-l-2 ml-4 mt-2"
+				style={{ borderColor: "rgba(4,120,87,0.6)" }}
+			>
 				{months.map((month) => {
 					const isActive = month === activeMonth;
 					return (
@@ -115,20 +121,24 @@ export default function TimelineNav({ months }) {
 							className="relative mb-3 pl-6"
 						>
 							<span
-								className={`absolute -left-[calc(0.375rem+1px)] top-1 w-3 h-3 rounded-full border-2 ${
-									isActive
-										? "bg-blue-300 border-blue-100 scale-110"
-										: "bg-green-700 border-green-500"
-								} transition-all duration-200`}
-								style={{ transformOrigin: "center" }}
+								className="absolute -left-[calc(0.375rem+1px)] top-1 w-3 h-3 rounded-full border-2 transition-all duration-200"
+								style={{
+									transformOrigin: "center",
+									backgroundColor: isActive
+										? "rgba(59,130,246,0.7)"
+										: "rgba(4,120,87,0.9)",
+									borderColor: isActive
+										? "rgba(219,234,254,0.9)"
+										: "rgba(34,197,94,0.6)",
+									transform: isActive ? "scale(1.1)" : "scale(1)",
+								}}
 							></span>
 							<a
 								href={`#month-${month}`}
 								className={`block text-sm ${
-									isActive
-										? "font-bold text-blue-100"
-										: "text-green-300 hover:text-green-100"
+									isActive ? "font-bold" : ""
 								} transition-colors duration-200`}
+								style={{ color: "var(--text)", opacity: isActive ? 1 : 0.72 }}
 							>
 								{formatMonthYear(month)}
 							</a>
