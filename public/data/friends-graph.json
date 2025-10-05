@@ -1,0 +1,86 @@
+{
+  "nodes": [
+    {
+      "id": "ebotian_blog",
+      "title": "Ebotian 的博客",
+      "url": "https://ebotian-blog.vercel.app/",
+      "meta": {
+        "addedBy": "ebotian",
+        "createdAt": "2025-10-06T08:00:00Z"
+      },
+      "status": {
+        "online": null,
+        "lastChecked": null,
+        "httpStatus": null
+      }
+    },
+    {
+      "id": "friend_a",
+      "title": "Friend A",
+      "url": "https://friend-a.example/",
+      "meta": {
+        "addedBy": "ebotian",
+        "createdAt": "2025-10-06T08:10:00Z"
+      },
+      "status": {
+        "online": null,
+        "lastChecked": null,
+        "httpStatus": null
+      }
+    },
+    {
+      "id": "friend_b",
+      "title": "Friend B",
+      "url": "https://friend-b.example/",
+      "meta": {
+        "addedBy": "ebotian",
+        "createdAt": "2025-10-06T08:20:00Z"
+      },
+      "status": {
+        "online": null,
+        "lastChecked": null,
+        "httpStatus": null
+      }
+    },
+    {
+      "id": "friend_c",
+      "title": "Friend C",
+      "url": "https://friend-c.example/",
+      "meta": {
+        "addedBy": "ebotian",
+        "createdAt": "2025-10-06T08:30:00Z"
+      },
+      "status": {
+        "online": null,
+        "lastChecked": null,
+        "httpStatus": null
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "ebotian_blog",
+      "to": "friend_a"
+    },
+    {
+      "from": "ebotian_blog",
+      "to": "friend_b"
+    },
+    {
+      "from": "friend_a",
+      "to": "ebotian_blog"
+    },
+    {
+      "from": "friend_b",
+      "to": "ebotian_blog"
+    },
+    {
+      "from": "friend_c",
+      "to": "ebotian_blog"
+    },
+    {
+      "from": "friend_c",
+      "to": "friend_a"
+    }
+  ]
+}
