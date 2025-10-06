@@ -36,6 +36,58 @@
     {
       "title": "spsicio",
       "url": "https://spsicio.github.io/quartz/"
+    },
+    {
+      "title": "shiro",
+      "url": "https://shiro.love/"
+    },
+    {
+      "title": "朋友#0001",
+      "url": "https://blog.jackworks.dev/"
+    },
+    {
+      "title": "朋友#0002",
+      "url": "https://www.byteloid.one/*"
+    },
+    {
+      "title": "朋友#0003",
+      "url": "https://wrye.dev/"
+    },
+    {
+      "title": "朋友#0004",
+      "url": "https://ichr.me/"
+    },
+    {
+      "title": "朋友#0005",
+      "url": "https://www.clorami.cc/"
+    },
+    {
+      "title": "朋友#0006",
+      "url": "https://www.khyan.top/"
+    },
+    {
+      "title": "朋友#0007",
+      "url": "https://www.cicada000.work/"
+    },
+    {
+      "title": "朋友#0008",
+      "url": "https://desvl.xyz/"
+    },
+    {
+      "title": "朋友#0009",
+      "url": "https://hee.ink/"
+    },
+    {
+      "title": "朋友#0010",
+      "url": "https://www.littleqiu.net/"
+    },
+    {
+      "title": "朋友#0011",
+      "url": "https://echiru.top/"
+    },
+    {
+      "title": "朋友#0012",
+      "url": "https://fika.ink/"
     }
   ],
   "edges": [
@@ -72,6 +124,71 @@
     {
       "from": "https://void-island-site.vercel.app/",
       "to": "https://ebotian-blog.vercel.app/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://shiro.love/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://blog.jackworks.dev/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://www.byteloid.one/*",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://wrye.dev/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://ichr.me/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://www.clorami.cc/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://www.khyan.top/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://www.cicada000.work/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://desvl.xyz/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://hee.ink/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://www.littleqiu.net/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://echiru.top/",
+      "label": ""
+    },
+    {
+      "from": "https://cynosura.one/",
+      "to": "https://fika.ink/",
       "label": ""
     }
   ]
