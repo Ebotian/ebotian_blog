@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "title": "我自己",
+      "title": "Nicolette",
       "url": "https://ebotian-blog.vercel.app/",
       "meta": {
         "addedBy": "ebotian",
@@ -14,59 +14,64 @@
       }
     },
     {
-      "title": "朋友#0002",
-      "url": "222"
+      "title": "rippin",
+      "url": "https://void-island-site.vercel.app/"
     },
     {
-      "title": "朋友#0003",
-      "url": "3333"
+      "title": "cynosura",
+      "url": "https://cynosura.one/"
     },
     {
-      "title": "朋友#0004",
-      "url": "huiusd"
+      "title": "auroraemiya",
+      "url": "https://auroraemiya.github.io/npee_learning_log.github.io/"
     },
     {
-      "title": "朋友#0005",
-      "url": "ok"
+      "title": "starrydreamawa",
+      "url": "https://starrydreamawa.github.io/hugo-stack.github.io"
     },
     {
-      "title": "朋友#0006",
-      "url": "lll"
+      "title": "catalpa",
+      "url": "https://catalpa-record.vercel.app/"
     },
     {
-      "title": "朋友#0007",
-      "url": "uuu"
+      "title": "spsicio",
+      "url": "https://spsicio.github.io/quartz/"
     }
   ],
   "edges": [
     {
       "from": "https://ebotian-blog.vercel.app/",
-      "to": "222",
+      "to": "https://void-island-site.vercel.app/",
       "label": ""
     },
     {
-      "from": "https://ebotian-blog.vercel.app/",
-      "to": "3333",
+      "from": "https://void-island-site.vercel.app/",
+      "to": "https://cynosura.one/",
       "label": ""
     },
     {
-      "from": "https://ebotian-blog.vercel.app/",
-      "to": "huiusd",
+      "from": "https://void-island-site.vercel.app/",
+      "to": "https://auroraemiya.github.io/npee_learning_log.github.io/",
       "label": ""
     },
     {
-      "from": "https://ebotian-blog.vercel.app/",
-      "to": "ok",
+      "from": "https://void-island-site.vercel.app/",
+      "to": "https://starrydreamawa.github.io/hugo-stack.github.io",
       "label": ""
     },
     {
-      "from": "https://ebotian-blog.vercel.app/",
-      "to": "lll",
+      "from": "https://void-island-site.vercel.app/",
+      "to": "https://catalpa-record.vercel.app/",
       "label": ""
     },
     {
-      "from": "https://ebotian-blog.vercel.app/",
-      "to": "uuu",
+      "from": "https://void-island-site.vercel.app/",
+      "to": "https://spsicio.github.io/quartz/",
+      "label": ""
+    },
+    {
+      "from": "https://void-island-site.vercel.app/",
+      "to": "https://ebotian-blog.vercel.app/",
       "label": ""
     }
   ]
