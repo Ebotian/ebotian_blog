@@ -141,10 +141,12 @@ html[data-theme="light"] .dos-article-content pre {
   background-color: #656a74;
   /* Tailwind gray-100 / 淡灰 */
 }
+
 html[data-theme="dark"] .dos-article-content pre {
   background-color: #27292d;
   /* Tailwind gray-100 / 淡灰 */
 }
+
 .dos-article-content pre code {
   background: transparent;
   color: inherit;
@@ -196,4 +198,59 @@ html[data-theme="dark"] .dos-article-content pre {
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* 高对比度、亮暗主题自适应按钮样式 */
+.dos-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 0.12em 0.9em;
+  min-height: 2.1em;
+  border-radius: 0.32em;
+  border: 2px solid var(--text);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  box-shadow: 0 2px 8px 0 rgba(34, 197, 94, 0.08);
+  vertical-align: middle;
+  /* 使按钮与文本基线对齐 */
+  white-space: nowrap;
+}
+
+.dos-btn:hover,
+.dos-btn:focus {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.dos-btn:active {
+  background: var(--muted);
+  color: var(--text);
+}
+
+/* 危险操作按钮（如删除） */
+.dos-btn.danger {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.dos-btn.danger:hover,
+.dos-btn.danger:focus {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+.dos-btn.danger:active {
+  background: #b91c1c;
+  color: #fff;
+  border-color: #b91c1c;
 }

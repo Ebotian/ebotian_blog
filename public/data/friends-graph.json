@@ -1,8 +1,7 @@
 {
   "nodes": [
     {
-      "id": "ebotian_blog",
-      "title": "Ebotian 的博客",
+      "title": "我自己",
       "url": "https://ebotian-blog.vercel.app/",
       "meta": {
         "addedBy": "ebotian",
@@ -15,72 +14,60 @@
       }
     },
     {
-      "id": "friend_a",
-      "title": "Friend A",
-      "url": "https://friend-a.example/",
-      "meta": {
-        "addedBy": "ebotian",
-        "createdAt": "2025-10-06T08:10:00Z"
-      },
-      "status": {
-        "online": null,
-        "lastChecked": null,
-        "httpStatus": null
-      }
+      "title": "朋友#0002",
+      "url": "222"
     },
     {
-      "id": "friend_b",
-      "title": "Friend B",
-      "url": "https://friend-b.example/",
-      "meta": {
-        "addedBy": "ebotian",
-        "createdAt": "2025-10-06T08:20:00Z"
-      },
-      "status": {
-        "online": null,
-        "lastChecked": null,
-        "httpStatus": null
-      }
+      "title": "朋友#0003",
+      "url": "3333"
     },
     {
-      "id": "friend_c",
-      "title": "Friend C",
-      "url": "https://friend-c.example/",
-      "meta": {
-        "addedBy": "ebotian",
-        "createdAt": "2025-10-06T08:30:00Z"
-      },
-      "status": {
-        "online": null,
-        "lastChecked": null,
-        "httpStatus": null
-      }
+      "title": "朋友#0004",
+      "url": "huiusd"
+    },
+    {
+      "title": "朋友#0005",
+      "url": "ok"
+    },
+    {
+      "title": "朋友#0006",
+      "url": "lll"
+    },
+    {
+      "title": "朋友#0007",
+      "url": "uuu"
     }
   ],
   "edges": [
     {
-      "from": "ebotian_blog",
-      "to": "friend_a"
+      "from": "https://ebotian-blog.vercel.app/",
+      "to": "222",
+      "label": ""
     },
     {
-      "from": "ebotian_blog",
-      "to": "friend_b"
+      "from": "https://ebotian-blog.vercel.app/",
+      "to": "3333",
+      "label": ""
     },
     {
-      "from": "friend_a",
-      "to": "ebotian_blog"
+      "from": "https://ebotian-blog.vercel.app/",
+      "to": "huiusd",
+      "label": ""
     },
     {
-      "from": "friend_b",
-      "to": "ebotian_blog"
+      "from": "https://ebotian-blog.vercel.app/",
+      "to": "ok",
+      "label": ""
     },
     {
-      "from": "friend_c",
-      "to": "ebotian_blog"
+      "from": "https://ebotian-blog.vercel.app/",
+      "to": "lll",
+      "label": ""
     },
     {
-      "from": "friend_c",
-      "to": "friend_a"
+      "from": "https://ebotian-blog.vercel.app/",
+      "to": "uuu",
+      "label": ""
     }
   ]
 }

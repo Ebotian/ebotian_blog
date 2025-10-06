@@ -95,7 +95,7 @@ export default function Skills({ skills = defaultSkills }) {
 	return (
 		<section className="w-full mb-6" aria-label="技能槽">
 			<div className="max-w-2xl mx-auto">
-				<Card>
+				<Card hoverEffect={false}>
 					<div className="mb-3 text-sm font-mono">我学会的一些东西:</div>
 					<div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
 						{skills.map((s) => {
