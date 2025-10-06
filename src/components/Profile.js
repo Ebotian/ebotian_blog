@@ -69,7 +69,7 @@ export default function Profile({ compact = false, totalWordCount }) {
 			/>
 			<div className="flex flex-col items-center w-full">
 				<h2 className="text-lg font-bold mt-1 mb-1 text-center">Ebit</h2>
-				<p className="text-sm mb-2 text-center">...求工作...</p>
+				<p className="text-sm mb-2 text-center">第一个是友链</p>
 				<div className="flex justify-center space-x-3 mt-auto pt-2">
 					<Link
 						href="/friends"
