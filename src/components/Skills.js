@@ -60,7 +60,7 @@ const ICON_MAP = {
 // Ordered skills: programming first, hardware, frontend, backend/fullstack, engineering tools, algorithms, office last
 const defaultSkills = [
 	{ key: "python", name: "Python", icon: "python" },
-	{ key: "c", name: "C", icon: "c" },
+	{ key: "c", name: "C/url/coco", icon: "c" },
 	{ key: "shell", name: "Shell", icon: "shell" },
 
 	{ key: "javascript", name: "JavaScript", icon: "javascript" },
