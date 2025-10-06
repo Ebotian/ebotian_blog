@@ -280,7 +280,7 @@ export default function FriendsPage() {
 								<Card hoverEffect={false}>
 									<article className="prose prose-invert max-w-none text-green-100 dos-article-content">
 										<h1 className="text-2xl font-bold mb-2 dos-title">
-											双击进入朋友们的站点
+											友链花--双击进入朋友们的站点
 										</h1>
 										<div className="mb-4 flex items-center gap-2">
 											<button
