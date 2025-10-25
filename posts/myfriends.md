@@ -10,4 +10,4 @@ excerpt: 用于存放友链和链接信息的页面。
 
 这里是我的好朋友:
 
-- [涟漪Rippin的空岛世界](https://void-island-site.vercel.app/)
+- [涟漪Rippin的空岛世界](https://void-island.com/)

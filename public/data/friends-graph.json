@@ -15,7 +15,7 @@
     },
     {
       "title": "rippin",
-      "url": "https://void-island-site.vercel.app/"
+      "url": "https://void-island.com/"
     },
     {
       "title": "cynosura",
@@ -1009,36 +1009,36 @@
   "edges": [
     {
       "from": "https://ebotian-blog.vercel.app/",
-      "to": "https://void-island-site.vercel.app/",
+      "to": "https://void-island.com/",
       "label": ""
     },
     {
-      "from": "https://void-island-site.vercel.app/",
+      "from": "https://void-island.com/",
       "to": "https://cynosura.one/",
       "label": ""
     },
     {
-      "from": "https://void-island-site.vercel.app/",
+      "from": "https://void-island.com/",
       "to": "https://auroraemiya.github.io/npee_learning_log.github.io/",
       "label": ""
     },
     {
-      "from": "https://void-island-site.vercel.app/",
+      "from": "https://void-island.com/",
       "to": "https://starrydreamawa.github.io/hugo-stack.github.io/",
       "label": ""
     },
     {
-      "from": "https://void-island-site.vercel.app/",
+      "from": "https://void-island.com/",
       "to": "https://catalpa-record.vercel.app/",
       "label": ""
     },
     {
-      "from": "https://void-island-site.vercel.app/",
+      "from": "https://void-island.com/",
       "to": "https://spsicio.github.io/quartz/",
       "label": ""
     },
     {
-      "from": "https://void-island-site.vercel.app/",
+      "from": "https://void-island.com/",
       "to": "https://ebotian-blog.vercel.app/",
       "label": ""
     },

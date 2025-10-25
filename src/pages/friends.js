@@ -550,12 +550,28 @@ export default function FriendsPage() {
 			used: d,
 		});
 		if (!d) return;
-		// 用 url 作为唯一键
+		// use the previously selectedNodeUrl as the identifier to update the node
+		const oldUrl = selectedNodeUrl || d.url;
+		// update nodes: replace node with url === oldUrl
 		const nodes = graph.nodes.map((n) =>
-			n.url === d.url ? { ...n, ...d } : n
+			n.url === oldUrl ? { ...n, ...d } : n
 		);
-		const newGraph = { ...graph, nodes };
+		// update edges: remap from/to that referenced oldUrl to new url (d.url)
+		const edges = graph.edges.map((e) => ({
+			from: e.from === oldUrl ? d.url : e.from,
+			to: e.to === oldUrl ? d.url : e.to,
+			label: e.label,
+		}));
+		const newGraph = { ...graph, nodes, edges };
 		setGraph(newGraph);
+		// update selection and draft to use the new url
+		setSelectedNodeUrl(d.url);
+		setDraft({ ...d });
+		// recalc incoming/outgoing from new graph
+		setOutgoing(edges.filter((e) => e.from === d.url).map((e) => e.to));
+		setIncoming(edges.filter((e) => e.to === d.url).map((e) => e.from));
+		setIncomingCollapsed(true);
+		setOutgoingCollapsed(true);
 		// 只在需要时关闭编辑区
 		if (closeAfterSave) {
 			setSelectedNodeUrl(null);
