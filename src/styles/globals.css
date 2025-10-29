@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+:root { text-autospace: normal; }
 /* Global theme variables and light/dark variants using data-theme on <html> */
 :root {
   --bg: #000000;
@@ -28,6 +29,7 @@ html[data-theme="dark"] {
 
 /* Apply page-level background and text color from variables */
 body {
+  text-autospace: normal;
   background-color: var(--bg);
   color: var(--text);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
@@ -36,7 +38,9 @@ body {
 
 /* Also ensure html/root uses the same background so large wrappers inherit it */
 html {
+  text-autospace: normal; 
   background-color: var(--bg);
+
 }
 
 /* Force any elements that still use Tailwind's bg-black utility to follow the theme
