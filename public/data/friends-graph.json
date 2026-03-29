@@ -1004,6 +1004,10 @@
     {
       "title": "朋友#0248",
       "url": "https://buncho.moe"
+    },
+    {
+      "title": "吐槽大王部落格",
+      "url": "https://www.tcdw.net"
     }
   ],
   "edges": [
@@ -2565,6 +2569,11 @@
     {
       "from": "https://lovemen.cc/",
       "to": "https://buncho.moe",
+      "label": ""
+    },
+    {
+      "from": "https://ebotian-blog.vercel.app/",
+      "to": "https://www.tcdw.net",
       "label": ""
     }
   ]
