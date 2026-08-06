@@ -27,8 +27,8 @@
     "remark-gfm": "^4.0.1",
     "remark-rehype": "^11.1.2",
     "rss": "^1.2.2",
-    "vis-data": "^8.0.3",
-    "vis-network": "^10.0.2"
+    "vis-data": "^8.0.4",
+    "vis-network": "^10.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
